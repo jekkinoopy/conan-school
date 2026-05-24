@@ -255,7 +255,7 @@
               <li><strong>左上 Merriam-Webster</strong>：韋氏詞典，可聽美音。</li>
               <li><strong>右上 VoiceTube</strong>：雙語字典，繁中翻譯與美音、影音例句。</li>
               <li><strong>左下 Bing 翻譯</strong>：繁中翻譯與語音。</li>
-              <li><strong>右下 Google 字典</strong>：官方 define 查詢頁，含發音。</li>
+              <li><strong>右下 Google 搜尋</strong>：以「單字 + 意思」查繁中說明（含發音相關結果）。</li>
             </ul>
           </li>
           <li>若某格<strong>空白</strong>，代表該站禁止內嵌（<code>iframe</code>）；可改在新分頁開該站官網搜尋同一單字。</li>
@@ -354,7 +354,7 @@
         document.getElementById("frameBing").src =
           "https://www.bing.com/translator/?text=" + encodeURIComponent(word) + "&from=en&to=zh-Hant";
         document.getElementById("frameGoogleDict").src =
-          "https://www.google.com/search?q=define+" + encodeURIComponent(word) + "&igu=1";
+          "https://www.google.com/search?q=" + encodeURIComponent(word) + "+意思&hl=zh-TW&lr=lang_zh-TW&igu=1";
 
         hint.textContent = "已同步搜尋「" + word + "」。若某格空白，可能是該站禁止內嵌顯示。";
       }

@@ -73,11 +73,8 @@
       </li>
     </ul>
     <div class="conan-footer-bottom">
-      <p class="conan-copy">&copy; 2026 努比的全端筆記 · 真相只有一個</p>
-      <p class="conan-footer-meta">
-        <a href="#top">回到頂部</a>
-      </p>
-    </div>
+      <p class="conan-copy">&copy; 2026 努比的全端筆記</p>
+</div>
   </footer>
 </body>
 

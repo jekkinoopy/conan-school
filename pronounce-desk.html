@@ -13,29 +13,14 @@
     rel="stylesheet" />
   <style>
     /* 本頁專用：Dev Dict Workspace 四格內嵌（不寫入 Conan.css） */
-    .conan-pronounce-page {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-
-    .conan-pronounce-page > main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      min-height: 0;
-      padding: 0;
-      background: var(--conan-dark);
-    }
-
-    .conan-pronounce-guide {
-      flex-shrink: 0;
-      padding: 0.85rem 1.25rem 0;
+    .conan-pronounce-main {
+      max-width: var(--conan-content-max);
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 2.5rem;
     }
 
     .conan-pronounce-guide-card {
-      max-width: var(--conan-content-max);
-      margin: 0 auto;
+      margin-bottom: 1rem;
       padding: 0.9rem 1.1rem 1rem;
       background: var(--conan-card-bg);
       border-left: 4px solid var(--conan-navy);
@@ -81,17 +66,22 @@
       border-radius: 3px;
     }
 
+    .conan-pronounce-workspace {
+      overflow: hidden;
+      background: var(--conan-card-bg);
+      border: 1px solid var(--conan-border);
+      border-radius: 4px;
+      box-shadow: 0 2px 12px var(--conan-shadow);
+    }
+
     .conan-pronounce-toolbar {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       gap: 0.75rem 1rem;
-      flex-shrink: 0;
-      padding: 0.85rem 1.25rem;
-      background: var(--conan-card-bg);
-      border-bottom: 2px solid var(--conan-border);
-      box-shadow: 0 2px 12px var(--conan-shadow);
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--conan-border);
     }
 
     .conan-pronounce-toolbar__title {
@@ -156,7 +146,6 @@
       flex: 1 1 100%;
       margin: 0;
       font-size: 0.82rem;
-      text-align: right;
       color: var(--conan-crimson);
     }
 
@@ -165,29 +154,23 @@
     }
 
     .conan-pronounce-quad-grid {
-      flex: 1;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      gap: 0.5rem;
-      min-height: min(70vh, 800px);
-      padding: 0.5rem;
-      background: color-mix(in srgb, var(--conan-dark) 88%, #000);
+      gap: 0.65rem;
+      padding: 0.85rem 1rem 1rem;
     }
 
     @media (max-width: 720px) {
       .conan-pronounce-quad-grid {
         grid-template-columns: 1fr;
-        grid-template-rows: repeat(4, minmax(220px, 1fr));
       }
     }
 
     .conan-pronounce-dict-box {
       display: flex;
       flex-direction: column;
-      min-height: 0;
       overflow: hidden;
-      background: var(--conan-card-bg);
+      background: var(--conan-bg);
       border: 1px solid var(--conan-border);
       border-radius: 4px;
     }
@@ -204,7 +187,7 @@
       background: #15803d;
     }
 
-    .conan-pronounce-dict-header--youglish {
+    .conan-pronounce-dict-header--voicetube {
       background: color-mix(in srgb, var(--conan-crimson) 75%, #7c3aed);
     }
 
@@ -217,8 +200,7 @@
     }
 
     .conan-pronounce-frame-wrap {
-      flex: 1;
-      min-height: 0;
+      height: 280px;
       background: #fff;
     }
 
@@ -226,7 +208,6 @@
       display: block;
       width: 100%;
       height: 100%;
-      min-height: 200px;
       border: none;
     }
 
@@ -244,7 +225,7 @@
   </style>
 </head>
 
-<body class="conan-school conan-pronounce-page">
+<body class="conan-school">
   <header class="conan-topbar">
     <a class="conan-logo" href="index.html">米花町偵探學園</a>
     <nav class="conan-nav" aria-label="主選單">
@@ -259,8 +240,8 @@
     </div>
   </header>
 
-  <main id="top">
-    <section class="conan-pronounce-guide" aria-labelledby="pronounce-guide-title">
+  <main id="top" class="conan-pronounce-main">
+    <section aria-labelledby="pronounce-guide-title">
       <article class="conan-pronounce-guide-card">
         <p class="conan-form-label"><i class="fa-solid fa-headphones" aria-hidden="true"></i> 輔助工具 · Dev Dict Workspace</p>
         <h1>英文發音偵訊台</h1>
@@ -272,7 +253,7 @@
           <li>各格用途：
             <ul class="conan-pronounce-guide-sources">
               <li><strong>左上 Merriam-Webster</strong>：韋氏詞典，可聽美音。</li>
-              <li><strong>右上 YouGlish</strong>：真人美音影片（US）。</li>
+              <li><strong>右上 VoiceTube</strong>：雙語字典，繁中翻譯與美音、影音例句。</li>
               <li><strong>左下 Bing 翻譯</strong>：繁中翻譯與語音。</li>
               <li><strong>右下 Google 字典</strong>：官方 define 查詢頁，含發音。</li>
             </ul>
@@ -282,6 +263,7 @@
       </article>
     </section>
 
+    <div class="conan-pronounce-workspace" aria-label="四格字典工作區">
     <div class="conan-pronounce-toolbar">
       <p class="conan-pronounce-toolbar__title">
         <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i> Dev Dict Workspace
@@ -303,9 +285,9 @@
         </div>
       </section>
       <section class="conan-pronounce-dict-box">
-        <div class="conan-pronounce-dict-header conan-pronounce-dict-header--youglish">YouGlish 真人美音影片</div>
+        <div class="conan-pronounce-dict-header conan-pronounce-dict-header--voicetube">VoiceTube 雙語字典 (有繁中翻譯與美音)</div>
         <div class="conan-pronounce-frame-wrap">
-          <iframe id="frameYouGlish" title="YouGlish 真人美音影片" src="about:blank"></iframe>
+          <iframe id="frameVoiceTube" title="VoiceTube 雙語字典" src="about:blank"></iframe>
         </div>
       </section>
       <section class="conan-pronounce-dict-box">
@@ -320,6 +302,7 @@
           <iframe id="frameGoogleDict" title="Google 官方字典" src="about:blank"></iframe>
         </div>
       </section>
+    </div>
     </div>
   </main>
 
@@ -366,8 +349,8 @@
 
         document.getElementById("frameMerriam").src =
           "https://www.merriam-webster.com/dictionary/" + encodeURIComponent(word);
-        document.getElementById("frameYouGlish").src =
-          "https://youglish.com/embed/search/" + encodeURIComponent(word) + "/us?toggleui=0";
+        document.getElementById("frameVoiceTube").src =
+          "https://www.voicetube.com/definition/" + encodeURIComponent(word);
         document.getElementById("frameBing").src =
           "https://www.bing.com/translator/?text=" + encodeURIComponent(word) + "&from=en&to=zh-Hant";
         document.getElementById("frameGoogleDict").src =

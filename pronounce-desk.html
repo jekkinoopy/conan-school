@@ -195,10 +195,6 @@
       background: var(--conan-navy);
     }
 
-    .conan-pronounce-dict-header--bing {
-      background: var(--conan-stamp);
-    }
-
     .conan-pronounce-dict-header--external {
       background: var(--conan-navy);
     }
@@ -279,22 +275,22 @@
       <article class="conan-pronounce-guide-card">
         <p class="conan-form-label"><i class="fa-solid fa-headphones" aria-hidden="true"></i> 輔助工具 · Dev Dict Workspace</p>
         <h1>英文發音偵訊台</h1>
-        <p class="conan-form-sub">輸入一次單字，同步查詢。上方 MDN／W3Schools 請用另開視窗；下方四格為內嵌預覽。</p>
+        <p class="conan-form-sub">輸入一次單字，同步查詢。上方 MDN／W3Schools 請點 ↗ 開官方搜尋；下方四格為內嵌預覽。</p>
         <h2 id="pronounce-guide-title">使用說明</h2>
         <ol class="conan-pronounce-guide-steps">
           <li>在下方搜尋列輸入<strong>英文單字</strong>（例如 <code>data</code>、<code>execute</code>），按「同步搜尋」或 Enter。</li>
           <li>會<strong>同步聯動</strong>載入同一關鍵字，不必分開開多個分頁。</li>
           <li>各格用途（依畫面由上而下、由左而右的順序）：
             <ul class="conan-pronounce-guide-sources">
-              <li><strong>MDN 列</strong>：Google 限定搜尋 MDN 繁中（<code>btnI</code> 直達）；請點 <strong>↗ 另開視窗</strong>。</li>
-              <li><strong>W3Schools 列</strong>：Google 限定搜尋 w3schools 繁中；請點 <strong>↗ 另開視窗</strong>。</li>
+              <li><strong>MDN 列</strong>：MDN 官方繁中搜尋；無法內嵌時請點 <strong>↗</strong>。</li>
+              <li><strong>W3Schools 列</strong>：W3Schools 官方標籤搜尋；請點 <strong>↗</strong>。</li>
               <li><strong>第一格 Google 搜尋</strong>：以「單字 + 意思」查繁中說明（含發音相關結果）。</li>
               <li><strong>第二格 Bing 翻譯</strong>：繁中翻譯與語音。</li>
               <li><strong>第三格 Merriam-Webster</strong>：韋氏詞典，可聽美音。</li>
               <li><strong>第四格 VoiceTube</strong>：雙語字典，繁中翻譯與美音、影音例句。</li>
             </ul>
           </li>
-          <li>若內嵌格<strong>空白</strong>或拒絕連線，代表該站禁止 <code>iframe</code>；MDN／W3Schools 請用另開視窗。</li>
+          <li>若內嵌格<strong>空白</strong>或拒絕連線，代表該站禁止 <code>iframe</code>；MDN／W3Schools 請點 ↗。</li>
         </ol>
       </article>
     </section>
@@ -317,14 +313,14 @@
       <section class="conan-pronounce-dict-box" aria-label="MDN 程式術語庫">
         <div class="conan-pronounce-dict-header conan-pronounce-dict-header--external conan-pronounce-dict-header--with-link">
           MDN 程式術語庫
-          <a id="mdnLink" class="conan-pronounce-external-link" href="#" target="_blank" rel="noopener noreferrer" hidden>↗ 另開視窗</a>
+          <a id="mdnLink" class="conan-pronounce-external-link" href="#" target="_blank" rel="noopener noreferrer" aria-label="在新分頁開啟 MDN 搜尋" hidden>↗</a>
         </div>
         <iframe id="frameMDN" title="MDN 程式術語庫" hidden tabindex="-1"></iframe>
       </section>
       <section class="conan-pronounce-dict-box" aria-label="W3Schools 語法庫">
         <div class="conan-pronounce-dict-header conan-pronounce-dict-header--external conan-pronounce-dict-header--with-link">
           W3Schools 語法庫
-          <a id="w3sLink" class="conan-pronounce-external-link" href="#" target="_blank" rel="noopener noreferrer" hidden>↗ 另開視窗</a>
+          <a id="w3sLink" class="conan-pronounce-external-link" href="#" target="_blank" rel="noopener noreferrer" aria-label="在新分頁開啟 W3Schools 搜尋" hidden>↗</a>
         </div>
         <iframe id="frameW3S" title="W3Schools 語法庫" hidden tabindex="-1"></iframe>
       </section>
@@ -338,7 +334,7 @@
         </div>
       </section>
       <section class="conan-pronounce-dict-box">
-        <div class="conan-pronounce-dict-header conan-pronounce-dict-header--bing">Bing 翻譯 (有中文翻譯與語音)</div>
+        <div class="conan-pronounce-dict-header conan-pronounce-dict-header--embed">Bing 翻譯 (有中文翻譯與語音)</div>
         <div class="conan-pronounce-frame-wrap">
           <iframe id="frameBing" title="Bing 翻譯" src="about:blank"></iframe>
         </div>
@@ -400,10 +396,7 @@
           return;
         }
 
-        var mdnUrl =
-          "https://www.google.com/search?q=site:developer.mozilla.org/zh-TW+" +
-          encodeURIComponent(word) +
-          "&btnI=I";
+        var mdnUrl = "https://developer.mozilla.org/zh-TW/search?q=" + encodeURIComponent(word);
         document.getElementById("frameMDN").src = mdnUrl;
         var mdnLink = document.getElementById("mdnLink");
         mdnLink.href = mdnUrl;
@@ -411,7 +404,7 @@
         mdnLink.style.display = "inline";
 
         var w3sUrl =
-          "https://www.google.com/search?q=site:w3schools.com+zh-TW+" + encodeURIComponent(word);
+          "https://www.w3schools.com/tags/ref_search.asp?search=" + encodeURIComponent(word);
         document.getElementById("frameW3S").src = w3sUrl;
         var w3sLink = document.getElementById("w3sLink");
         w3sLink.href = w3sUrl;
@@ -427,7 +420,7 @@
         document.getElementById("frameVoiceTube").src =
           "https://www.voicetube.com/definition/" + encodeURIComponent(word);
 
-        hint.textContent = "已同步搜尋「" + word + "」。內嵌格若空白，可能是該站禁止 iframe；MDN／W3Schools 請用另開視窗。";
+        hint.textContent = "已同步搜尋「" + word + "」。內嵌格若空白，可能是該站禁止 iframe；MDN／W3Schools 請點 ↗。";
       }
 
       form.addEventListener("submit", function (e) {

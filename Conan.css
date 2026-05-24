@@ -507,14 +507,19 @@
 }
 
 .conan-back-link {
-  display: inline-flex;
+  display: flex;
+  width: fit-content;
   align-items: center;
   gap: 0.35rem;
-  margin-bottom: 1rem;
+  margin: 0 0 0.45rem;
   font-size: 0.88rem;
   font-weight: 500;
   color: var(--conan-navy);
   text-decoration: none;
+}
+
+.conan-back-link:last-of-type {
+  margin-bottom: 1rem;
 }
 
 .conan-form-label .fa-solid,
@@ -820,6 +825,17 @@
   text-indent: 0.22em;
   white-space: nowrap;
   color: var(--conan-stamp);
+}
+
+/* 鑑識中（版型同鑑識成功，色票用緋紅區隔） */
+.conan-notes-stamp--progress .conan-notes-stamp-plate {
+  border-color: var(--conan-crimson);
+  outline-color: var(--conan-crimson);
+  background: color-mix(in srgb, var(--conan-crimson) 6%, #fff);
+}
+
+.conan-notes-stamp--progress .conan-notes-stamp-text {
+  color: var(--conan-crimson);
 }
 
 /* 目錄用迷你橡皮章 */
@@ -1169,8 +1185,8 @@
   color: #bbb;
 }
 
-.conan-note-page .conan-back-link-secondary {
-  margin-top: 0.35rem;
+.conan-back-link-secondary {
+  margin-top: 0.15rem;
 }
 
 /* 辦案筆記內頁：上一則／下一則 */

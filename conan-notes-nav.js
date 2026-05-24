@@ -2,11 +2,11 @@
 (function () {
   /** @type {{ id: string, href: string, title: string }[]} */
   var CHAIN = [
-    { id: "01-標點符號", href: "01-標點符號.html", title: "標點符號" },
-    { id: "02-PHP與SQL", href: "02-PHP與SQL.html", title: "PHP 與 SQL" },
+    { id: "01-標點符號", href: "01-標點符號.html", title: "疑點重重的標點符號" },
+    { id: "02-PHP與SQL", href: "02-PHP與SQL.html", title: "誰是 PHP？誰是 SQL？" },
     { id: "03-後端核心動作鑑識", href: "03-後端核心動作鑑識.html", title: "後端核心動作鑑識" },
-    { id: "04-後台動態插頁與inc", href: "04-後台動態插頁與inc.html", title: "後台動態插頁與 ?inc" },
-    { id: "05-WHERE帳密字串拆解", href: "05-WHERE帳密字串拆解.html", title: "WHERE 帳密六零件" },
+    { id: "04-後台動態插頁與inc", href: "04-後台動態插頁與inc.html", title: "後台動態插頁與 ?inc 傳令" },
+    { id: "05-WHERE帳密字串拆解", href: "05-WHERE帳密字串拆解.html", title: "WHERE 帳密字串：六零件鍵位拆解" },
   ];
 
   var INDEX_HREF = "index.html";

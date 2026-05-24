@@ -11,9 +11,120 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap"
     rel="stylesheet" />
+  <style>
+    /* 目錄頁專用（寫在本頁，避免快取或未載入全站 CSS 時變成純文字列表） */
+    .conan-notes-index-page .conan-notes-index-grid {
+      list-style: none;
+      margin: 1.25rem 0 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .conan-notes-index-page .conan-notes-index-card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.65rem 1rem;
+      align-items: center;
+      margin: 0;
+      padding: 1rem 1.1rem;
+      background: var(--conan-bg);
+      border: 1px solid var(--conan-border);
+      border-radius: 6px;
+    }
+
+    .conan-notes-index-page .conan-notes-index-card--ok {
+      border-left: 5px solid var(--conan-stamp);
+      background: color-mix(in srgb, var(--conan-stamp) 6%, var(--conan-card-bg));
+    }
+
+    .conan-notes-index-page .conan-notes-index-card--progress {
+      border-left: 5px solid var(--conan-crimson);
+      background: color-mix(in srgb, var(--conan-crimson) 5%, var(--conan-card-bg));
+    }
+
+    .conan-notes-index-page .conan-notes-index-card__link {
+      display: flex;
+      gap: 0.85rem;
+      align-items: flex-start;
+      min-width: 0;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .conan-notes-index-page .conan-notes-index-card__num {
+      flex-shrink: 0;
+      min-width: 2rem;
+      padding: 0.2rem 0.45rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      line-height: 1.35;
+      text-align: center;
+      color: #fff;
+      background: var(--conan-navy);
+      border-radius: 4px;
+    }
+
+    .conan-notes-index-page .conan-notes-index-card__title {
+      display: block;
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: var(--conan-navy);
+    }
+
+    .conan-notes-index-page .conan-notes-index-card__link:hover .conan-notes-index-card__title {
+      color: var(--conan-crimson);
+    }
+
+    .conan-notes-index-page .conan-notes-index-card__desc {
+      display: block;
+      margin-top: 0.3rem;
+      font-size: 0.88rem;
+      line-height: 1.45;
+      color: var(--conan-dark);
+      opacity: 0.9;
+    }
+
+    .conan-notes-index-page .conan-notes-index-stamp {
+      position: static;
+      display: inline-block;
+      flex-shrink: 0;
+      transform: rotate(-8deg);
+      opacity: 0.88;
+    }
+
+    .conan-notes-index-page .conan-notes-index-stamp .conan-notes-stamp-plate {
+      padding: 0.35rem 0.55rem 0.4rem;
+      border-width: 2.5px;
+      outline-width: 2px;
+    }
+
+    .conan-notes-index-page .conan-notes-index-stamp .conan-notes-stamp-text {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-indent: 0.18em;
+    }
+
+    .conan-notes-index-page .conan-notes-stamp--progress .conan-notes-stamp-plate {
+      border-color: var(--conan-crimson);
+      outline-color: var(--conan-crimson);
+      background: color-mix(in srgb, var(--conan-crimson) 6%, #fff);
+    }
+
+    .conan-notes-index-page .conan-notes-stamp--progress .conan-notes-stamp-text {
+      color: var(--conan-crimson);
+    }
+
+    @media (max-width: 520px) {
+      .conan-notes-index-page .conan-notes-index-card {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 
-<body class="conan-school">
+<body class="conan-school conan-notes-index-page">
   <header class="conan-topbar">
     <a class="conan-logo" href="../index.html">米花町偵探學園</a>
     <nav class="conan-nav" aria-label="主選單">
@@ -31,73 +142,79 @@
   <main class="conan-notes-main" id="top">
     <a class="conan-back-link" href="../index.html"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> 返回偵辦室</a>
     <article class="conan-notes-dossier">
-      <p class="conan-form-label"><i class="fa-solid fa-book" aria-hidden="true"></i> conan-school/notes</p>
       <h1>辦案筆記目錄</h1>
-      <aside class="conan-notes-disclaimer" aria-labelledby="notes-disclaimer-title">
-        <p id="notes-disclaimer-title" class="conan-notes-disclaimer-title">
-          <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 偵辦警語
-        </p>
-        <p>未標「整篇已複習」的筆記，內容多為 AI 整理，複習前<strong>正確性不予保證</strong>。</p>
-      </aside>
-      <p class="conan-notes-intro">新單元請同步：<code>notes/NN-….html</code>、本目錄、<code>conan-notes-nav.js</code> 的 <code>CHAIN</code>。</p>
-
-      <ul class="conan-notes-index-legend" role="note" aria-label="目錄狀態說明">
-        <li><span class="conan-notes-index-badge conan-notes-index-badge--ok">整篇已複習</span> 內頁條目皆已鑑識</li>
-        <li><span class="conan-notes-index-badge">待複習</span> 尚有未定案條目</li>
-      </ul>
 
       <ul class="conan-notes-index-grid">
         <li class="conan-notes-index-card conan-notes-index-card--ok">
           <a class="conan-notes-index-card__link" href="01-標點符號.html">
             <span class="conan-notes-index-card__num">01</span>
             <span>
-              <span class="conan-notes-index-card__title">標點符號</span>
-              <span class="conan-notes-index-card__desc">PHP / SQL 鍵位指法與符號用途</span>
+              <span class="conan-notes-index-card__title">疑點重重的標點符號</span>
+              <span class="conan-notes-index-card__desc">PHP / SQL 鍵位指法</span>
             </span>
           </a>
-          <span class="conan-notes-index-badge conan-notes-index-badge--ok">整篇已複習</span>
+          <span class="conan-notes-index-stamp conan-notes-stamp" aria-label="整篇已複習">
+            <span class="conan-notes-stamp-plate">
+              <span class="conan-notes-stamp-text">鑑識成功</span>
+            </span>
+          </span>
         </li>
-        <li class="conan-notes-index-card">
+        <li class="conan-notes-index-card conan-notes-index-card--progress">
           <a class="conan-notes-index-card__link" href="02-PHP與SQL.html">
             <span class="conan-notes-index-card__num">02</span>
             <span>
-              <span class="conan-notes-index-card__title">PHP 與 SQL</span>
-              <span class="conan-notes-index-card__desc">誰是執行者？誰是指令內容？</span>
+              <span class="conan-notes-index-card__title">誰是 PHP？誰是 SQL？</span>
+              <span class="conan-notes-index-card__desc">執行者與指令內容</span>
             </span>
           </a>
-          <span class="conan-notes-index-badge">待複習</span>
+          <span class="conan-notes-index-stamp conan-notes-stamp conan-notes-stamp--progress" aria-label="鑑識中">
+            <span class="conan-notes-stamp-plate">
+              <span class="conan-notes-stamp-text">鑑識中</span>
+            </span>
+          </span>
         </li>
-        <li class="conan-notes-index-card">
+        <li class="conan-notes-index-card conan-notes-index-card--progress">
           <a class="conan-notes-index-card__link" href="03-後端核心動作鑑識.html">
             <span class="conan-notes-index-card__num">03</span>
             <span>
               <span class="conan-notes-index-card__title">後端核心動作鑑識</span>
-              <span class="conan-notes-index-card__desc">INSERT 註冊 vs SELECT COUNT 登入</span>
+              <span class="conan-notes-index-card__desc">註冊 INSERT、登入 SELECT</span>
             </span>
           </a>
-          <span class="conan-notes-index-badge">待複習</span>
+          <span class="conan-notes-index-stamp conan-notes-stamp conan-notes-stamp--progress" aria-label="鑑識中">
+            <span class="conan-notes-stamp-plate">
+              <span class="conan-notes-stamp-text">鑑識中</span>
+            </span>
+          </span>
         </li>
-        <li class="conan-notes-index-card">
+        <li class="conan-notes-index-card conan-notes-index-card--progress">
           <a class="conan-notes-index-card__link" href="04-後台動態插頁與inc.html">
             <span class="conan-notes-index-card__num">04</span>
             <span>
-              <span class="conan-notes-index-card__title">後台動態插頁與 ?inc</span>
-              <span class="conan-notes-index-card__desc">05-admin 外殼、include、$_GET 傳令</span>
+              <span class="conan-notes-index-card__title">後台動態插頁與 ?inc 傳令</span>
+              <span class="conan-notes-index-card__desc">include、$_GET 傳令</span>
             </span>
           </a>
-          <span class="conan-notes-index-badge">待複習</span>
+          <span class="conan-notes-index-stamp conan-notes-stamp conan-notes-stamp--progress" aria-label="鑑識中">
+            <span class="conan-notes-stamp-plate">
+              <span class="conan-notes-stamp-text">鑑識中</span>
+            </span>
+          </span>
         </li>
-        <li class="conan-notes-index-card">
+        <li class="conan-notes-index-card conan-notes-index-card--progress">
           <a class="conan-notes-index-card__link" href="05-WHERE帳密字串拆解.html">
             <span class="conan-notes-index-card__num">05</span>
             <span>
-              <span class="conan-notes-index-card__title">WHERE 帳密六零件</span>
-              <span class="conan-notes-index-card__desc">登入 WHERE 片段由左而右鍵位拆解</span>
+              <span class="conan-notes-index-card__title">WHERE 帳密字串：六零件鍵位拆解</span>
+              <span class="conan-notes-index-card__desc">登入 WHERE 由左而右拆解</span>
             </span>
           </a>
-          <span class="conan-notes-index-badge">待複習</span>
+          <span class="conan-notes-index-stamp conan-notes-stamp conan-notes-stamp--progress" aria-label="鑑識中">
+            <span class="conan-notes-stamp-plate">
+              <span class="conan-notes-stamp-text">鑑識中</span>
+            </span>
+          </span>
         </li>
-        <!-- 整篇複習完：li 加 conan-notes-index-card--ok；徽章改 conan-notes-index-badge--ok「整篇已複習」；內頁移除 conan-notes-disclaimer -->
       </ul>
     </article>
   </main>

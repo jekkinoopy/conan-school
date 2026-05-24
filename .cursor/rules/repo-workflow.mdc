@@ -59,13 +59,14 @@ alwaysApply: true
 | 上下則 | `conan-notes-nav.js` 的 `CHAIN` |
 
 - **新增**一則：三處都加；內頁要有 `#conan-notes-nav-root` + `data-note-id`（與 `CHAIN[].id` 一致）。
+- 目錄卡標題、`CHAIN[].title`、內頁 `<h1>` **必須同一套名稱**（勿目錄用簡稱、內頁用長標題）。
 - **刪除**一則：三處都刪。
 - **改目錄、頁尾、peer-nav、更名**後：用 `notes/*.html` 對照目錄與 `CHAIN`；禁止用舊版 `index.html` 覆寫而漏條目。
 - 讀者正文只寫**知識與題目**；協作說明、聊天口吻勿寫進 HTML。
 - 頁底 `conan-notes-nav` 已負責上下則；正文勿加「下一步：請進入 xxx」。
 - `conan-notes-list` 已是 `<ol>` 自動編號（左側 1. 2. 3.）；條目標題**勿再寫** ①②③，避免重複編號。
 - **鍵位指法**（僅**待鑑識**條目新寫或修）：只寫「手·指·上/下/左/右格數」、必要時「小指 Shift」；**勿**寫鍵帽字母、**勿**寫「同 01 …」等跨篇對照。已蓋「鑑識成功」者**勿改指法**，除非使用者當次點名。
-- **整篇複習完**：`notes/index.html` 該卡加 `conan-notes-index-card--ok`、徽章 `conan-notes-index-badge--ok`（文字「整篇已複習」）；該篇 HTML **移除** `conan-notes-disclaimer`。
+- **整篇複習完**：`notes/index.html` 該卡加 `conan-notes-index-card--ok`、右側藍章「鑑識成功」；該篇 HTML **移除** `conan-notes-disclaimer`。**進行中**用 `conan-notes-index-card--progress`、緋紅章「鑑識中」。目錄頁不放警語、CHAIN 同步等協作說明。
 
 ## 對外連結
 

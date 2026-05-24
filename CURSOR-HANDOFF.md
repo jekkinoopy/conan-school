@@ -22,8 +22,8 @@
 | 辦案筆記目錄 | `notes/index.html` |
 | 發音工具 | `pronounce-desk.html` |
 | 筆記上下則 | `conan-notes-nav.js` → `CHAIN` |
-| 頁尾外部連結 | `practice-peer-nav.js`（其他練習專區；頁尾不放內部連結） |
-| 頁尾聯絡 | 柯南世界觀虛構資訊，見 `includes/site-footer.html` |
+| 頁尾外部連結 | `conan-footer-nav` 僅春日部、努比實作專區（見 `includes/site-footer.html`） |
+| 頁尾聯絡 | 柯南世界觀虛構資訊（毛利偵探事務所等） |
 
 **新辦案筆記一則：**`notes/NN-….html` + 目錄 `<li>` + `CHAIN` 三處同步。
 

@@ -12,58 +12,34 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap"
     rel="stylesheet" />
   <style>
-    /* 本頁專用：雙欄發音工作台（不寫入 Conan.css） */
+    /* 本頁專用：多視窗發音搜尋（不寫入 Conan.css） */
     .conan-pronounce-layout {
       max-width: var(--conan-content-max);
       margin: 0 auto;
-      padding: 1.25rem 1.25rem 2rem;
+      padding: 1.25rem 1.25rem 2.5rem;
     }
 
-    .conan-pronounce-shell {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      min-height: min(72vh, 720px);
+    .conan-pronounce-workspace {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 2rem 1.75rem 1.75rem;
+      text-align: center;
       background: var(--conan-card-bg);
       border: 1px solid var(--conan-border);
-      border-left: 4px solid var(--conan-navy);
+      border-left: 4px solid var(--conan-crimson);
       border-radius: 4px;
       box-shadow: 0 4px 20px var(--conan-shadow);
-      overflow: hidden;
     }
 
-    @media (min-width: 768px) {
-      .conan-pronounce-shell {
-        flex-direction: row;
-        min-height: min(78vh, 760px);
-      }
+    .conan-pronounce-workspace h1 {
+      margin: 0 0 0.5rem;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--conan-dark);
     }
 
-    .conan-pronounce-panel {
-      flex-shrink: 0;
-      padding: 1.25rem 1.25rem 1.5rem;
-      background: var(--conan-bg);
-      border-bottom: 1px solid var(--conan-border);
-    }
-
-    @media (min-width: 768px) {
-      .conan-pronounce-panel {
-        width: 300px;
-        border-bottom: none;
-        border-right: 1px solid var(--conan-border);
-      }
-    }
-
-    .conan-pronounce-intro {
-      margin: 0 0 1.25rem;
-      font-size: 0.88rem;
-      line-height: 1.55;
-      color: var(--conan-muted);
-      font-style: italic;
-    }
-
-    .conan-pronounce-form {
-      margin-bottom: 1.25rem;
+    .conan-pronounce-workspace .conan-form-sub {
+      margin: 0 0 1.5rem;
     }
 
     .conan-pronounce-form label {
@@ -72,20 +48,22 @@
       font-size: 0.88rem;
       font-weight: 600;
       color: var(--conan-navy);
+      text-align: left;
     }
 
-    .conan-pronounce-form input {
+    .conan-pronounce-form input[type="text"] {
       width: 100%;
-      padding: 0.55rem 0.75rem;
+      padding: 0.7rem 0.85rem;
       border: 1px solid var(--conan-border);
       border-radius: 4px;
-      font-size: 0.95rem;
+      font-size: 1rem;
       font-family: inherit;
-      background: var(--conan-card-bg);
+      text-align: center;
+      background: var(--conan-bg);
       color: var(--conan-dark);
     }
 
-    .conan-pronounce-form input:focus {
+    .conan-pronounce-form input[type="text"]:focus {
       outline: none;
       border-color: var(--conan-navy);
       box-shadow: 0 0 0 2px rgba(42, 67, 101, 0.18);
@@ -93,11 +71,11 @@
 
     .conan-pronounce-form button[type="submit"] {
       width: 100%;
-      margin-top: 0.65rem;
-      padding: 0.65rem 1rem;
+      margin-top: 0.85rem;
+      padding: 0.7rem 1rem;
       border: 1px solid var(--conan-crimson);
       border-radius: 4px;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       font-weight: 600;
       font-family: inherit;
       color: #fff;
@@ -112,7 +90,7 @@
 
     .conan-pronounce-hint {
       min-height: 1.25rem;
-      margin: 0.5rem 0 0;
+      margin: 0.65rem 0 0;
       font-size: 0.82rem;
       color: var(--conan-crimson);
     }
@@ -121,111 +99,44 @@
       display: none;
     }
 
-    .conan-pronounce-dict-label {
-      margin: 0 0 0.5rem;
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+    .conan-pronounce-targets {
+      margin: 1.25rem 0 0;
+      padding: 0;
+      list-style: none;
+      text-align: left;
+      font-size: 0.86rem;
+      line-height: 1.65;
       color: var(--conan-muted);
     }
 
-    .conan-pronounce-dict-links {
+    .conan-pronounce-targets li {
       display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      margin: 0;
-      padding: 0;
-      list-style: none;
+      align-items: flex-start;
+      gap: 0.4rem;
+      margin-bottom: 0.35rem;
     }
 
-    .conan-pronounce-dict-links a {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.5rem;
-      padding: 0.55rem 0.75rem;
-      font-size: 0.86rem;
-      font-weight: 600;
-      text-decoration: none;
-      color: var(--conan-dark);
-      background: var(--conan-card-bg);
-      border: 1px solid var(--conan-border);
-      border-radius: 4px;
-      transition: border-color 0.15s ease, color 0.15s ease;
-    }
-
-    .conan-pronounce-dict-links a:hover {
-      border-color: var(--conan-crimson);
+    .conan-pronounce-targets .fa-solid {
+      margin-top: 0.2rem;
       color: var(--conan-crimson);
+      font-size: 0.75rem;
     }
 
-    .conan-pronounce-dict-links a[aria-disabled="true"] {
-      opacity: 0.45;
-      pointer-events: none;
-      cursor: not-allowed;
-    }
-
-    .conan-pronounce-tag {
-      flex-shrink: 0;
-      font-size: 0.72rem;
-      font-weight: 600;
-      padding: 0.12rem 0.4rem;
-      border-radius: 3px;
-      color: var(--conan-navy);
-      background: color-mix(in srgb, var(--conan-navy) 10%, #fff);
-    }
-
-    .conan-pronounce-stage {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      min-height: 280px;
-      background: var(--conan-dark);
-    }
-
-    .conan-pronounce-stage-bar {
-      padding: 0.65rem 1rem;
-      font-size: 0.86rem;
-      color: rgba(255, 255, 255, 0.85);
-      background: color-mix(in srgb, var(--conan-dark) 92%, #000);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-    }
-
-    .conan-pronounce-stage-bar strong {
-      color: #fca5a5;
-      font-weight: 700;
-    }
-
-    .conan-pronounce-frame-wrap {
-      flex: 1;
-      position: relative;
-      background: #111827;
-    }
-
-    .conan-pronounce-frame-wrap iframe {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    .conan-pronounce-placeholder {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1.5rem;
-      text-align: center;
-      font-size: 0.9rem;
+    .conan-pronounce-tip {
+      margin-top: 1.25rem;
+      padding: 0.85rem 1rem;
+      font-size: 0.88rem;
       line-height: 1.6;
-      color: rgba(255, 255, 255, 0.65);
+      text-align: left;
+      color: var(--conan-navy);
+      background: color-mix(in srgb, var(--conan-crimson) 8%, var(--conan-card-bg));
+      border: 1px solid color-mix(in srgb, var(--conan-crimson) 30%, transparent);
+      border-left: 4px solid var(--conan-crimson);
+      border-radius: 0 4px 4px 0;
     }
 
-    .conan-pronounce-placeholder[hidden] {
-      display: none;
+    .conan-pronounce-tip strong {
+      color: var(--conan-crimson);
     }
   </style>
 </head>
@@ -248,59 +159,30 @@
   <main class="conan-pronounce-layout" id="top">
     <a class="conan-back-link" href="index.html"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> 返回偵辦室</a>
 
-    <article class="conan-form-card" style="margin-bottom: 1rem; border-left-color: var(--conan-navy);">
+    <div class="conan-pronounce-workspace">
       <p class="conan-form-label"><i class="fa-solid fa-headphones" aria-hidden="true"></i> 輔助工具</p>
       <h1>英文發音偵訊台</h1>
-      <p class="conan-form-sub">練習 PHP／SQL 時，變數與關鍵字念不準？輸入一次英文線索，右側聯動翻譯發音，左側直達權威字典比對美音。</p>
-    </article>
+      <p class="conan-form-sub">輸入關鍵字，一鍵多視窗並排對照：Google 翻譯、劍橋、韋氏、牛津。</p>
 
-    <div class="conan-pronounce-shell">
-      <aside class="conan-pronounce-panel" aria-label="搜尋與字典捷徑">
-        <form class="conan-pronounce-form" id="pronounceForm">
-          <label for="keywordInput"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i> 關鍵字（英文）</label>
-          <input type="text" id="keywordInput" name="q" placeholder="例如 Data、execute、members"
-            autocomplete="off" spellcheck="false" autofocus />
-          <button type="submit"><i class="fa-solid fa-bullhorn" aria-hidden="true"></i> 同步更新發音區</button>
-          <p class="conan-pronounce-hint" id="pronounceHint" role="status" aria-live="polite"></p>
-        </form>
+      <form class="conan-pronounce-form" id="pronounceForm">
+        <label for="keywordInput"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i> 關鍵字（英文）</label>
+        <input type="text" id="keywordInput" name="q" placeholder="請輸入單字…（例如 Data、execute）"
+          autocomplete="off" spellcheck="false" autofocus />
+        <button type="submit"><i class="fa-solid fa-bullhorn" aria-hidden="true"></i> 一鍵全網爆發搜尋</button>
+        <p class="conan-pronounce-hint" id="pronounceHint" role="status" aria-live="polite"></p>
+      </form>
 
-        <p class="conan-pronounce-dict-label">權威字典・新分頁開啟</p>
-        <ul class="conan-pronounce-dict-links">
-          <li>
-            <a id="lnkCambridge" href="#" target="_blank" rel="noopener noreferrer" aria-disabled="true">
-              <span>Cambridge 劍橋</span>
-              <span class="conan-pronounce-tag">US 喇叭</span>
-            </a>
-          </li>
-          <li>
-            <a id="lnkMerriam" href="#" target="_blank" rel="noopener noreferrer" aria-disabled="true">
-              <span>Merriam 韋氏</span>
-              <span class="conan-pronounce-tag">美音</span>
-            </a>
-          </li>
-          <li>
-            <a id="lnkOxford" href="#" target="_blank" rel="noopener noreferrer" aria-disabled="true">
-              <span>Oxford 牛津</span>
-              <span class="conan-pronounce-tag">對照</span>
-            </a>
-          </li>
-        </ul>
-      </aside>
+      <ul class="conan-pronounce-targets" aria-label="將同時開啟的網站">
+        <li><i class="fa-solid fa-circle" aria-hidden="true"></i> Google 翻譯（英文 → 繁中、喇叭發音）</li>
+        <li><i class="fa-solid fa-circle" aria-hidden="true"></i> Cambridge 劍橋字典（US 藍喇叭）</li>
+        <li><i class="fa-solid fa-circle" aria-hidden="true"></i> Merriam-Webster 韋氏（美音）</li>
+        <li><i class="fa-solid fa-circle" aria-hidden="true"></i> Oxford Learner's 牛津學習字典</li>
+      </ul>
 
-      <section class="conan-pronounce-stage" aria-label="內嵌翻譯發音">
-        <div class="conan-pronounce-stage-bar">
-          當前線索：<strong id="displayWord">尚未輸入</strong>
-          <span aria-hidden="true"> · </span>
-          下方為 Google 翻譯（可點喇叭聽發音）
-        </div>
-        <div class="conan-pronounce-frame-wrap">
-          <p class="conan-pronounce-placeholder" id="framePlaceholder">
-            輸入英文單字或程式關鍵字後，按「同步更新發音區」或 Enter。
-          </p>
-          <iframe id="googleTranslateFrame" title="Google 翻譯：英文發音與中文對照" src="about:blank"
-            hidden></iframe>
-        </div>
-      </section>
+      <div class="conan-pronounce-tip" role="note">
+        <strong><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 第一次使用請注意</strong><br>
+        點擊按鈕後，瀏覽器網址列右側可能出現「已封鎖彈出式視窗」。請點選並設為<strong>永遠允許本網站</strong>，四個字典視窗才能同時並排噴出來對照發音。
+      </div>
     </div>
   </main>
 
@@ -329,54 +211,44 @@
       var form = document.getElementById("pronounceForm");
       var input = document.getElementById("keywordInput");
       var hint = document.getElementById("pronounceHint");
-      var displayWord = document.getElementById("displayWord");
-      var frame = document.getElementById("googleTranslateFrame");
-      var placeholder = document.getElementById("framePlaceholder");
-      var dictLinks = [
-        { el: document.getElementById("lnkCambridge"), build: function (w) { return "https://dictionary.cambridge.org/dictionary/english/" + encodeURIComponent(w); } },
-        { el: document.getElementById("lnkMerriam"), build: function (w) { return "https://www.merriam-webster.com/dictionary/" + encodeURIComponent(w); } },
-        { el: document.getElementById("lnkOxford"), build: function (w) { return "https://www.oxfordlearnersdictionaries.com/definition/english/" + encodeURIComponent(w); } },
-      ];
 
-      function setDictLinks(word, enabled) {
-        dictLinks.forEach(function (item) {
-          if (enabled) {
-            item.el.href = item.build(word);
-            item.el.removeAttribute("aria-disabled");
-          } else {
-            item.el.href = "#";
-            item.el.setAttribute("aria-disabled", "true");
-          }
-        });
-      }
-
-      function executeSearch() {
+      function executeMultiSearch() {
         var word = input.value.trim();
         hint.textContent = "";
 
         if (!word) {
-          hint.textContent = "請先輸入英文關鍵字。";
+          hint.textContent = "請先輸入你想搜尋的關鍵字。";
           input.focus();
           return;
         }
 
-        displayWord.textContent = word;
-        placeholder.hidden = true;
-        frame.hidden = false;
-        frame.src =
-          "https://translate.google.com/?sl=en&tl=zh-TW&text=" +
-          encodeURIComponent(word) +
-          "&op=translate";
+        var urls = [
+          "https://translate.google.com/?sl=en&tl=zh-TW&text=" + encodeURIComponent(word) + "&op=translate",
+          "https://dictionary.cambridge.org/dictionary/english/" + encodeURIComponent(word),
+          "https://www.merriam-webster.com/dictionary/" + encodeURIComponent(word),
+          "https://www.oxfordlearnersdictionaries.com/definition/english/" + encodeURIComponent(word),
+        ];
 
-        setDictLinks(word, true);
+        var w = 450;
+        var h = 600;
+
+        urls.forEach(function (url, index) {
+          var left = index * 120;
+          var top = 100;
+          window.open(
+            url,
+            "dict_window_" + index,
+            "width=" + w + ",height=" + h + ",left=" + left + ",top=" + top + ",resizable=yes,scrollbars=yes"
+          );
+        });
+
+        hint.textContent = "已送出「" + word + "」；若視窗沒出現，請允許彈出式視窗。";
       }
 
       form.addEventListener("submit", function (e) {
         e.preventDefault();
-        executeSearch();
+        executeMultiSearch();
       });
-
-      setDictLinks("", false);
     })();
   </script>
   <script src="practice-peer-nav.js"></script>

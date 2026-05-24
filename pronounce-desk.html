@@ -200,6 +200,9 @@
     }
 
     .conan-pronounce-external-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
       margin: 0.85rem 1rem 0;
     }
 
@@ -210,12 +213,8 @@
       gap: 0.35rem 0.65rem;
     }
 
-    .conan-pronounce-dict-header--console {
-      gap: 1rem;
-      padding: 0.65rem 1rem;
-    }
-
     .conan-pronounce-dict-header .conan-pronounce-external-link {
+      margin-left: auto;
       font-size: 0.8rem;
       font-weight: 600;
       color: rgba(255, 255, 255, 0.92);
@@ -276,21 +275,22 @@
       <article class="conan-pronounce-guide-card">
         <p class="conan-form-label"><i class="fa-solid fa-headphones" aria-hidden="true"></i> 輔助工具 · Dev Dict Workspace</p>
         <h1>英文發音偵訊台</h1>
-        <p class="conan-form-sub">輸入一次單字，同步搜尋。上方<strong>外連直達控制台</strong>可另開各站；下方四格為內嵌預覽。</p>
+        <p class="conan-form-sub">輸入一次單字，同步查詢。上方 MDN／W3Schools 請點 ↗ 開官方搜尋；下方四格為內嵌預覽。</p>
         <h2 id="pronounce-guide-title">使用說明</h2>
         <ol class="conan-pronounce-guide-steps">
           <li>在下方搜尋列輸入<strong>英文單字</strong>（例如 <code>data</code>、<code>execute</code>），按「同步搜尋」或 Enter。</li>
-          <li>會<strong>同步聯動</strong>載入同一關鍵字，並更新外連直達連結。</li>
-          <li><strong>外連直達控制台</strong>：MDN、W3Schools、Google、Bing、Merriam、VoiceTube 各站 ↗ 連結（括號內為目前單字）。</li>
+          <li>會<strong>同步聯動</strong>載入同一關鍵字，不必分開開多個分頁。</li>
           <li>各格用途（依畫面由上而下、由左而右的順序）：
             <ul class="conan-pronounce-guide-sources">
-              <li><strong>第一格 Google 搜尋</strong>：以「單字 + 意思」查繁中說明。</li>
+              <li><strong>MDN 列</strong>：MDN 官方繁中搜尋；搜尋後點 <strong>↗</strong>。</li>
+              <li><strong>W3Schools 列</strong>：W3Schools 官方搜尋；搜尋後點 <strong>↗</strong>。</li>
+              <li><strong>第一格 Google 搜尋</strong>：以「單字 + 意思」查繁中說明（含發音相關結果）。</li>
               <li><strong>第二格 Bing 翻譯</strong>：繁中翻譯與語音。</li>
               <li><strong>第三格 Merriam-Webster</strong>：韋氏詞典，可聽美音。</li>
-              <li><strong>第四格 VoiceTube</strong>：雙語字典與影音例句。</li>
+              <li><strong>第四格 VoiceTube</strong>：雙語字典，繁中翻譯與美音、影音例句。</li>
             </ul>
           </li>
-          <li>若內嵌格<strong>空白</strong>，代表該站禁止 <code>iframe</code>，請改點控制台對應外連。</li>
+          <li>若內嵌格<strong>空白</strong>或拒絕連線，代表該站禁止 <code>iframe</code>；MDN／W3Schools 請點 ↗。</li>
         </ol>
       </article>
     </section>
@@ -310,16 +310,16 @@
     </div>
 
     <div class="conan-pronounce-external-bars">
-      <section class="conan-pronounce-dict-box" aria-label="直達連結面板">
-        <div
-          class="conan-pronounce-dict-header conan-pronounce-dict-header--external conan-pronounce-dict-header--with-link conan-pronounce-dict-header--console">
-          <span>外連直達控制台：</span>
-          <a id="mdnLink" class="conan-pronounce-external-link" href="#" target="_blank" rel="noopener noreferrer" hidden>MDN </a>
-          <a id="w3sLink" class="conan-pronounce-external-link" href="#" target="_blank" rel="noopener noreferrer" hidden>W3Schools </a>
-          <a id="googleLink" class="conan-pronounce-external-link" href="#" target="_blank" rel="noopener noreferrer" hidden>Google </a>
-          <a id="bingLink" class="conan-pronounce-external-link" href="#" target="_blank" rel="noopener noreferrer" hidden>Bing </a>
-          <a id="merriamLink" class="conan-pronounce-external-link" href="#" target="_blank" rel="noopener noreferrer" hidden>Merriam </a>
-          <a id="voicetubeLink" class="conan-pronounce-external-link" href="#" target="_blank" rel="noopener noreferrer" hidden>VoiceTube </a>
+      <section class="conan-pronounce-dict-box" aria-label="MDN 程式術語庫">
+        <div class="conan-pronounce-dict-header conan-pronounce-dict-header--external conan-pronounce-dict-header--with-link">
+          MDN 程式術語庫
+          <a id="mdnLink" class="conan-pronounce-external-link" href="#" target="_blank" rel="noopener noreferrer" hidden></a>
+        </div>
+      </section>
+      <section class="conan-pronounce-dict-box" aria-label="W3Schools 語法庫">
+        <div class="conan-pronounce-dict-header conan-pronounce-dict-header--external conan-pronounce-dict-header--with-link">
+          W3Schools 語法庫
+          <a id="w3sLink" class="conan-pronounce-external-link" href="#" target="_blank" rel="noopener noreferrer" hidden></a>
         </div>
       </section>
     </div>
@@ -394,60 +394,36 @@
           return;
         }
 
-        var encoded = encodeURIComponent(word);
-
-        // 1. MDN 連結武裝
+        // 1. MDN 區塊：指向官方繁中標準搜尋
+        var mdnUrl = "https://developer.mozilla.org/zh-TW/search?q=" + encodeURIComponent(word);
         var mdnLink = document.getElementById("mdnLink");
-        mdnLink.href = "https://developer.mozilla.org/zh-TW/search?q=" + encoded;
+        mdnLink.href = mdnUrl;
         mdnLink.hidden = false;
         mdnLink.style.display = "inline";
-        mdnLink.textContent = "MDN ↗ (" + word + ")";
+        mdnLink.textContent = "↗";
+        mdnLink.setAttribute("aria-label", "在新分頁開啟 MDN 搜尋：" + word);
 
-        // 2. W3Schools 連結武裝
+        // 2. w3schools 區塊：官方標準搜尋直達路徑
+        var w3sUrl =
+          "https://www.w3schools.com/search/search.asp?search=" + encodeURIComponent(word);
         var w3sLink = document.getElementById("w3sLink");
-        w3sLink.href = "https://www.w3schools.com/search/search.asp?search=" + encoded;
+        w3sLink.href = w3sUrl;
         w3sLink.hidden = false;
         w3sLink.style.display = "inline";
-        w3sLink.textContent = "W3Schools ↗ (" + word + ")";
+        w3sLink.textContent = "↗";
+        w3sLink.setAttribute("aria-label", "在新分頁開啟 W3Schools 搜尋：" + word);
 
-        // 3. Google 連結武裝
-        var googleUrl =
-          "https://www.google.com/search?q=" + encoded + "+意思&hl=zh-TW&lr=lang_zh-TW&igu=1";
-        var googleLink = document.getElementById("googleLink");
-        googleLink.href = googleUrl;
-        googleLink.hidden = false;
-        googleLink.style.display = "inline";
-        googleLink.textContent = "Google ↗ (" + word + ")";
-        document.getElementById("frameGoogleDict").src = googleUrl;
+        // 3. 下方四象限內嵌聯動
+        document.getElementById("frameGoogleDict").src =
+          "https://www.google.com/search?q=" + encodeURIComponent(word) + "+意思&hl=zh-TW&lr=lang_zh-TW&igu=1";
+        document.getElementById("frameBing").src =
+          "https://www.bing.com/translator/?text=" + encodeURIComponent(word) + "&from=en&to=zh-Hant";
+        document.getElementById("frameMerriam").src =
+          "https://www.merriam-webster.com/dictionary/" + encodeURIComponent(word);
+        document.getElementById("frameVoiceTube").src =
+          "https://www.voicetube.com/definition/" + encodeURIComponent(word);
 
-        // 4. Bing 連結武裝
-        var bingUrl = "https://www.bing.com/translator/?text=" + encoded + "&from=en&to=zh-Hant";
-        var bingLink = document.getElementById("bingLink");
-        bingLink.href = bingUrl;
-        bingLink.hidden = false;
-        bingLink.style.display = "inline";
-        bingLink.textContent = "Bing ↗ (" + word + ")";
-        document.getElementById("frameBing").src = bingUrl;
-
-        // 5. Merriam 連結武裝
-        var merriamUrl = "https://www.merriam-webster.com/dictionary/" + encoded;
-        var merriamLink = document.getElementById("merriamLink");
-        merriamLink.href = merriamUrl;
-        merriamLink.hidden = false;
-        merriamLink.style.display = "inline";
-        merriamLink.textContent = "Merriam ↗ (" + word + ")";
-        document.getElementById("frameMerriam").src = merriamUrl;
-
-        // 6. VoiceTube 連結武裝
-        var voicetubeUrl = "https://www.voicetube.com/definition/" + encoded;
-        var voicetubeLink = document.getElementById("voicetubeLink");
-        voicetubeLink.href = voicetubeUrl;
-        voicetubeLink.hidden = false;
-        voicetubeLink.style.display = "inline";
-        voicetubeLink.textContent = "VoiceTube ↗ (" + word + ")";
-        document.getElementById("frameVoiceTube").src = voicetubeUrl;
-
-        hint.textContent = "已同步搜尋「" + word + "」。";
+        hint.textContent = "已同步搜尋「" + word + "」。內嵌格若空白，可能是該站禁止 iframe；MDN／W3Schools 請點 ↗。";
       }
 
       form.addEventListener("submit", function (e) {

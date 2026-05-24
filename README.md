@@ -22,6 +22,11 @@ php -S localhost:8080
 - [努比的全端筆記・PHP 課程](https://jekkinoopy.github.io/WebDev-Notes/courses/01-database/php/index.html)
 - [實作專區索引](https://jekkinoopy.github.io/WebDev-Notes/courses/07-projects/practice/index.html)（含春日部蠟筆專案）
 
+## Cursor 協作
+
+- `.cursor/rules/` — 助理必讀（commit 格式、辦案筆記三處同步、Git 還原）
+- `CURSOR-HANDOFF.md` — 接力與路徑速查
+
 ## 來源
 
-自 [WebDev-Notes](https://github.com/jekkinoopy/WebDev-Notes) 的 `courses/07-projects/practice/conan-school` 複製獨立維護；WebDev-Notes 內舊路徑可保留或改連本 repo 的 GitHub Pages。
+自 [WebDev-Notes](https://github.com/jekkinoopy/WebDev-Notes) 的 `courses/07-projects/practice/conan-school` 複製獨立維護；規範模板見母 repo `docs/portable-collab-rules/`。

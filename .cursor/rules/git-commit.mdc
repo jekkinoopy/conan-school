@@ -26,15 +26,20 @@ git commit -m "type: 重點"
 
 ## type（擇一）
 
-- `fix:` — 修正錯誤、連結、顯示問題
-- `feat:` — 新功能、新頁面、新單元
-- `style:` — 純排版、文案、樣式、規範文檔，不影響功能邏輯
+採用常見的 [Conventional Commits](https://www.conventionalcommits.org/zh-hant/) 前綴，方便日後用 `git log` 篩選。
+
+- `fix:` — 修正錯誤、壞連結、顯示異常
+- `feat:` — 新功能、新頁面、新單元、新工具行為
+- `docs:` — **學習／說明內容**：`notes/` 辦案筆記、`README`、`CURSOR-HANDOFF.md`、規則 `.mdc` 等（含「標點複習完畢移入已鑑識」）
+- `style:` — **外觀與版面**：`Conan.css`、配色、間距、頁尾文案精簡等，不改變頁面「教什麼」
+
+**怎麼選（一句話）**：改的是「學到什麼」→ `docs:`；改的是「長什麼樣」→ `style:`。
 
 ## 重點（`type: ` 之後）
 
 - **不超過 15 字**（中文一字算一字）
 - **只寫 repo 內實際改動**；勿寫聊天教學、原因補充、對話才提到的說明
-- 範例：`style: 改檔必附 commit`
+- 範例：`docs: SQL 逗號移入已鑑識`、`style: 統一標題配色`
 
 ## 勿擅自執行
 

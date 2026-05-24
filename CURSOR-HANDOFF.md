@@ -18,7 +18,9 @@
 | 用途 | 路徑 |
 |------|------|
 | 站首 | `index.html` |
+| 學員管理（PDO 練習） | `members/`（目錄索引 `members/index.html`） |
 | 辦案筆記目錄 | `notes/index.html` |
+| 發音工具 | `pronounce-desk.html` |
 | 筆記上下則 | `conan-notes-nav.js` → `CHAIN` |
 | 頁尾跨站連結 | `practice-peer-nav.js` |
 
@@ -42,6 +44,7 @@ php -S localhost:8080
 - 自 WebDev-Notes 獨立；帶入可攜協作規範（`.cursor/rules`、`CURSOR-HANDOFF`）。
 - 邊界：學習專案不代寫練習程式；改動只限點名檔；樣式 class + `include` 共用、單頁覆寫不改 `Conan.css`；規範文檔採**迭代改寫**、勿文末堆疊重複章節。
 - `git-commit.mdc`：明訂**改檔必附 commit 指令**（結尾、漏附視為違規）；仍不代為執行 commit。
+- 學員管理練習檔移至 `members/`；全站連結與筆記內路徑改為 `members/…`。
 
 ---
 

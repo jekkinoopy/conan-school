@@ -25,8 +25,8 @@
       <a class="conan-nav-peer" href="https://jekkinoopy.github.io/WebDev-Notes/courses/07-projects/practice/crayon/index.html">春日部體重管理之壘</a>
     </nav>
     <div class="conan-auth">
-      <a href="../03-login.php" class="conan-btn conan-btn-login">登入</a>
-      <a href="../01-register.html" class="conan-btn conan-btn-register">註冊</a>
+      <a href="../members/03-login.php" class="conan-btn conan-btn-login">登入</a>
+      <a href="../members/01-register.html" class="conan-btn conan-btn-register">註冊</a>
     </div>
   </header>
 
@@ -44,7 +44,7 @@
         <p>以下內容<strong>大部分為 AI
             整理</strong>；在本人複習驗證之前，<strong>正確性不予保證</strong>。請以偵探之眼謹慎偵查、交叉比對，勿將本筆記直接當成定案證據。</p>
       </aside>
-      <p class="conan-notes-intro">進入後台管理（<code>05-admin.php</code>）之後，班級、學生、科別等功能不必每次都換一整頁網址，而是用<strong>動態插頁（include）</strong>在原地換內容。本篇標題若還不順口，可先當工作名，確認後再改。</p>
+      <p class="conan-notes-intro">進入後台管理（<code>members/05-admin.php</code>）之後，班級、學生、科別等功能不必每次都換一整頁網址，而是用<strong>動態插頁（include）</strong>在原地換內容。本篇標題若還不順口，可先當工作名，確認後再改。</p>
 
       <section class="conan-notes-faction" aria-labelledby="admin-shell-title">
         <h2 id="admin-shell-title" class="conan-notes-faction-title">
@@ -57,7 +57,7 @@
             <li class="conan-notes-item">
               <p class="conan-notes-symbol"><strong>走線示意</strong></p>
               <div class="conan-notes-code">
-                <pre class="conan-notes-code-block"><code>【05-admin.php】（後台視覺外殼：Navbar 等固定版面）
+                <pre class="conan-notes-code-block"><code>【members/05-admin.php】（後台視覺外殼：Navbar 等固定版面）
        │
        ▼ 主機由上往下出貨，讀到 &lt;main&gt; 肚子裡
  ┌──────────────────────────────────────────────┐
@@ -114,7 +114,7 @@
               <p class="conan-notes-symbol"><strong>鐵律</strong></p>
               <ul class="conan-notes-bullets">
                 <li>程式不會憑空變出 <code>$pdo</code>；一定要有人先 <code>include "db_conn.php";</code> 開門。</li>
-                <li>當 <code>05-admin.php</code> 在最頂端已開門，再用 <code>include</code> 把 <code>students.php</code> 吸進來時，兩者在<strong>同一次請求</strong>裡執行，視為同一條生命線，底下的 SQL 可直接用外殼借到的 <code>$pdo</code>。</li>
+                <li>當 <code>members/05-admin.php</code> 在最頂端已開門，再用 <code>include</code> 把 <code>students.php</code> 吸進來時，兩者在<strong>同一次請求</strong>裡執行，視為同一條生命線，底下的 SQL 可直接用外殼借到的 <code>$pdo</code>。</li>
                 <li><strong>零件檔通常不必再寫一次</strong> <code>include "db_conn.php";</code>，否則等於重複開門，也失去「全家共享一把鑰匙」的清楚分工。（若有人直接打開零件檔網址、沒經過外殼，才需要另案處理。）</li>
               </ul>
             </li>
@@ -138,8 +138,8 @@
   <footer id="contact" class="conan-site-footer">
     <h2 class="conan-footer-title">米花町偵探學園</h2>
     <nav class="conan-footer-nav" aria-label="頁尾連結">
-      <a href="../01-register.html">註冊練習</a>
-      <a href="../03-login.php">登入練習</a>
+      <a href="../members/01-register.html">註冊練習</a>
+      <a href="../members/03-login.php">登入練習</a>
       <a href="index.html">辦案筆記</a>
       <a href="https://jekkinoopy.github.io/WebDev-Notes/courses/01-database/php/s02-register.php">註冊筆記</a>
       <a href="https://jekkinoopy.github.io/WebDev-Notes/courses/01-database/php/s03-login.php">登入筆記</a>
@@ -157,7 +157,7 @@
       </li>
       <li>
         <i class="fa-solid fa-file-export" aria-hidden="true"></i>
-        實裝目標：05-admin.php · include/students.php（待定案）
+        實裝目標：members/05-admin.php · include/students.php（待定案）
       </li>
     </ul>
     <div data-practice-peer-nav data-current="conan" data-base="../../"></div>

@@ -13,6 +13,10 @@ php -S localhost:8080
 
 瀏覽器開啟：<http://localhost:8080/index.html>
 
+## 學員管理專區（PDO 練習）
+
+`members/index.html` — 註冊、API、登入等主線檔案集中於 `members/`。
+
 ## 辦案筆記
 
 `notes/index.html` — 01 標點符號、02 PHP 與 SQL、03 後端核心動作、04 後台動態插頁。

@@ -12,30 +12,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap"
     rel="stylesheet" />
   <style>
-    /* 本頁專用：四格同步內嵌字典（不寫入 Conan.css） */
-    .conan-pronounce-page {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-
+    /* 本頁專用：Dev Dict Audio Player（不寫入 Conan.css） */
     .conan-pronounce-page > main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      min-height: 0;
-      padding: 0;
-      background: var(--conan-dark);
-    }
-
-    .conan-pronounce-guide {
-      flex-shrink: 0;
-      padding: 0.85rem 1.25rem 0;
+      max-width: var(--conan-content-max);
+      margin: 0 auto;
+      padding: 1rem 1.25rem 2rem;
     }
 
     .conan-pronounce-guide-card {
-      max-width: var(--conan-content-max);
-      margin: 0 auto;
+      margin-bottom: 1rem;
       padding: 0.9rem 1.1rem 1rem;
       background: var(--conan-card-bg);
       border-left: 4px solid var(--conan-navy);
@@ -74,10 +59,6 @@
       list-style: disc;
     }
 
-    .conan-pronounce-guide-sources li {
-      margin-top: 0.2rem;
-    }
-
     .conan-pronounce-guide-card code {
       font-size: 0.92em;
       padding: 0.1em 0.35em;
@@ -85,43 +66,26 @@
       border-radius: 3px;
     }
 
-    .conan-pronounce-quad-toolbar {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.75rem 1rem;
-      padding: 0.85rem 1.25rem;
+    .conan-pronounce-workspace {
+      padding: 1rem 1.1rem 1.25rem;
       background: var(--conan-card-bg);
-      border-bottom: 2px solid var(--conan-border);
+      border: 1px solid var(--conan-border);
+      border-radius: 4px;
       box-shadow: 0 2px 12px var(--conan-shadow);
     }
 
-    .conan-pronounce-quad-toolbar__title {
-      margin: 0;
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--conan-dark);
-      letter-spacing: 0.04em;
-    }
-
-    .conan-pronounce-quad-toolbar__title i {
-      margin-right: 0.35em;
-      color: var(--conan-crimson);
-    }
-
-    .conan-pronounce-quad-search {
+    .conan-pronounce-search-row {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       gap: 0.5rem 0.65rem;
-      flex: 1 1 16rem;
-      max-width: 36rem;
-      justify-content: flex-end;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--conan-border);
     }
 
-    .conan-pronounce-quad-search input[type="text"] {
-      flex: 1 1 10rem;
+    .conan-pronounce-search-row input[type="text"] {
+      flex: 1 1 12rem;
       min-width: 8rem;
       padding: 0.55rem 0.75rem;
       border: 1px solid var(--conan-border);
@@ -132,14 +96,14 @@
       color: var(--conan-dark);
     }
 
-    .conan-pronounce-quad-search input[type="text"]:focus {
+    .conan-pronounce-search-row input[type="text"]:focus {
       outline: none;
       border-color: var(--conan-navy);
       box-shadow: 0 0 0 2px rgba(42, 67, 101, 0.18);
     }
 
-    .conan-pronounce-quad-search button[type="submit"] {
-      padding: 0.55rem 1.15rem;
+    .conan-pronounce-search-row button[type="submit"] {
+      padding: 0.55rem 1rem;
       border: 1px solid var(--conan-crimson);
       border-radius: 4px;
       font-size: 0.9rem;
@@ -151,90 +115,106 @@
       white-space: nowrap;
     }
 
-    .conan-pronounce-quad-search button[type="submit"]:hover {
+    .conan-pronounce-search-row button[type="submit"]:hover {
       background: #b91c1c;
       border-color: #b91c1c;
     }
 
-    .conan-pronounce-quad-hint {
+    .conan-pronounce-hint {
       flex: 1 1 100%;
       margin: 0;
       font-size: 0.82rem;
-      text-align: right;
       color: var(--conan-crimson);
     }
 
-    .conan-pronounce-quad-hint:empty {
+    .conan-pronounce-hint:empty {
       display: none;
     }
 
-    .conan-pronounce-quad-grid {
-      flex: 1;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      gap: 0.5rem;
-      min-height: min(70vh, 720px);
-      padding: 0.5rem;
-      background: color-mix(in srgb, var(--conan-dark) 88%, #000);
+    .conan-pronounce-status h2 {
+      margin: 0 0 0.35rem;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--conan-dark);
     }
 
-    @media (max-width: 720px) {
-      .conan-pronounce-quad-grid {
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(4, minmax(220px, 1fr));
+    .conan-pronounce-status #currentWord {
+      color: var(--conan-crimson);
+    }
+
+    .conan-pronounce-play-tip {
+      margin: 0 0 1rem;
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: var(--conan-stamp);
+    }
+
+    .conan-pronounce-audio-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    .conan-pronounce-audio-table th,
+    .conan-pronounce-audio-table td {
+      padding: 0.75rem 0.85rem;
+      border: 1px solid var(--conan-border);
+      vertical-align: middle;
+      text-align: left;
+    }
+
+    .conan-pronounce-audio-table thead th {
+      background: var(--conan-navy);
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .conan-pronounce-audio-table tbody tr:nth-child(even) {
+      background: color-mix(in srgb, var(--conan-bg) 60%, var(--conan-card-bg));
+    }
+
+    .conan-pronounce-audio-table tbody td:first-child {
+      width: 30%;
+      font-weight: 600;
+      color: var(--conan-dark);
+    }
+
+    .conan-pronounce-audio-table audio {
+      width: 100%;
+      max-width: 28rem;
+      height: 2.5rem;
+    }
+
+    @media (max-width: 640px) {
+      .conan-pronounce-audio-table thead {
+        display: none;
+      }
+
+      .conan-pronounce-audio-table tbody tr {
+        display: block;
+        margin-bottom: 0.75rem;
+        border: 1px solid var(--conan-border);
+      }
+
+      .conan-pronounce-audio-table tbody td {
+        display: block;
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid var(--conan-border);
+      }
+
+      .conan-pronounce-audio-table tbody td:last-child {
+        border-bottom: none;
+      }
+
+      .conan-pronounce-audio-table tbody td:first-child::before {
+        content: "來源：";
+        font-weight: 400;
+        color: var(--conan-stamp);
       }
     }
 
-    .conan-pronounce-dict-box {
-      display: flex;
-      flex-direction: column;
-      min-height: 0;
-      overflow: hidden;
-      background: var(--conan-card-bg);
-      border: 1px solid var(--conan-border);
-      border-radius: 4px;
-    }
-
-    .conan-pronounce-dict-header {
-      padding: 0.45rem 0.85rem;
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: #fff;
-      letter-spacing: 0.02em;
-    }
-
-    .conan-pronounce-dict-header--youglish {
-      background: color-mix(in srgb, var(--conan-crimson) 75%, #7c3aed);
-    }
-
-    .conan-pronounce-dict-header--dictionary {
-      background: var(--conan-stamp);
-    }
-
-    .conan-pronounce-dict-header--merriam {
-      background: #15803d;
-    }
-
-    .conan-pronounce-dict-header--collins {
-      background: color-mix(in srgb, var(--conan-crimson) 55%, #ea580c);
-    }
-
-    .conan-pronounce-frame-wrap {
-      flex: 1;
-      min-height: 0;
-      background: #fff;
-    }
-
-    .conan-pronounce-frame-wrap iframe {
-      display: block;
-      width: 100%;
-      height: 100%;
-      min-height: 200px;
-      border: none;
-    }
-
-    .conan-pronounce-quad-search .visually-hidden {
+    .visually-hidden {
       position: absolute;
       width: 1px;
       height: 1px;
@@ -263,67 +243,70 @@
     </div>
   </header>
 
-  <main id="top">
+  <main id="top" class="conan-page-main">
     <section class="conan-pronounce-guide" aria-labelledby="pronounce-guide-title">
       <article class="conan-pronounce-guide-card">
-        <p class="conan-form-label"><i class="fa-solid fa-headphones" aria-hidden="true"></i> 輔助工具 · Dev Dict Hub</p>
+        <p class="conan-form-label"><i class="fa-solid fa-headphones" aria-hidden="true"></i> 輔助工具 · Dev Dict Audio Player</p>
         <h1>英文發音偵訊台</h1>
-        <p class="conan-form-sub">輸入一次關鍵字，四格同步聯動。適合在練 PHP／SQL 時查變數、函式、關鍵字的美音與多本字典對照。</p>
+        <p class="conan-form-sub">輸入一次單字，同步抓取三條美音音訊網址，在同一頁用播放器收聽，適合練程式時對照變數與關鍵字發音。</p>
         <h2 id="pronounce-guide-title">使用說明</h2>
         <ol class="conan-pronounce-guide-steps">
-          <li>在下方搜尋列輸入<strong>英文單字</strong>（例如 <code>execute</code>、<code>members</code>），按「搜尋」或 Enter。</li>
-          <li>四格會<strong>同步聯動</strong>載入同一關鍵字，不必分開開四個分頁。</li>
-          <li>各格用途：
+          <li>在下方輸入<strong>英文單字</strong>（例如 <code>data</code>、<code>execute</code>），按「同步抓取美音網址」或 Enter。</li>
+          <li>畫面會顯示<strong>當前查詢單字</strong>，並把三個來源的 MP3／音訊網址注入下方播放器。</li>
+          <li>請分別點各列播放器的 <strong>Play</strong> 收聽；來源為：
             <ul class="conan-pronounce-guide-sources">
-              <li><strong>左上 YouGlish</strong>：真人美音影片，聽語境發音。</li>
-              <li><strong>右上 Dictionary.com</strong>：釋義與發音按鈕。</li>
-              <li><strong>左下 Merriam-Webster</strong>：韋氏詞典，美國常用讀音。</li>
-              <li><strong>右下 Collins</strong>：柯林斯英英釋義對照。</li>
+              <li><strong>FreeDict API</strong>：公開美音檔（<code>-us.mp3</code>）。</li>
+              <li><strong>Wordnik Engine</strong>：字庫美音檔。</li>
+              <li><strong>Google TTS</strong>：語音合成美式英語。</li>
             </ul>
           </li>
-          <li>若某格是<strong>空白</strong>，代表該站禁止被內嵌（<code>iframe</code>）；可改在新分頁開該字典官網，搜尋同一單字。</li>
+          <li>若某列無法播放，可能是該字無檔案、跨網域限制或網路阻擋；可換字重試或改開字典網站。</li>
         </ol>
       </article>
     </section>
 
-    <div class="conan-pronounce-quad-toolbar">
-      <p class="conan-pronounce-quad-toolbar__title">
-        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i> 關鍵字搜尋
-      </p>
-      <form class="conan-pronounce-quad-search" id="pronounceForm">
+    <div class="conan-pronounce-workspace" aria-label="美音播放器工作區">
+      <form class="conan-pronounce-search-row" id="pronounceForm">
         <label class="visually-hidden" for="masterSearch">關鍵字（英文）</label>
-        <input type="text" id="masterSearch" name="q" placeholder="請輸入單字…"
+        <input type="text" id="masterSearch" name="q" placeholder="請輸入單字... (e.g. data)"
           autocomplete="off" spellcheck="false" autofocus />
-        <button type="submit"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i> 搜尋</button>
-        <p class="conan-pronounce-quad-hint" id="pronounceHint" role="status" aria-live="polite"></p>
+        <button type="submit"><i class="fa-solid fa-link" aria-hidden="true"></i> 同步抓取美音網址</button>
+        <p class="conan-pronounce-hint" id="pronounceHint" role="status" aria-live="polite"></p>
       </form>
-    </div>
 
-    <div class="conan-pronounce-quad-grid" aria-label="四格字典對照">
-      <section class="conan-pronounce-dict-box">
-        <div class="conan-pronounce-dict-header conan-pronounce-dict-header--youglish">YouGlish · 真人美音影片</div>
-        <div class="conan-pronounce-frame-wrap">
-          <iframe id="frameYouGlish" title="YouGlish 真人美音影片" src="about:blank"></iframe>
-        </div>
-      </section>
-      <section class="conan-pronounce-dict-box">
-        <div class="conan-pronounce-dict-header conan-pronounce-dict-header--dictionary">Dictionary.com · 字典</div>
-        <div class="conan-pronounce-frame-wrap">
-          <iframe id="frameDictionary" title="Dictionary.com 字典" src="about:blank"></iframe>
-        </div>
-      </section>
-      <section class="conan-pronounce-dict-box">
-        <div class="conan-pronounce-dict-header conan-pronounce-dict-header--merriam">Merriam-Webster · 韋氏詞典</div>
-        <div class="conan-pronounce-frame-wrap">
-          <iframe id="frameMerriam" title="Merriam-Webster 韋氏詞典" src="about:blank"></iframe>
-        </div>
-      </section>
-      <section class="conan-pronounce-dict-box">
-        <div class="conan-pronounce-dict-header conan-pronounce-dict-header--collins">Collins Dictionary · 詞典</div>
-        <div class="conan-pronounce-frame-wrap">
-          <iframe id="frameCollins" title="Collins Dictionary 詞典" src="about:blank"></iframe>
-        </div>
-      </section>
+      <div class="conan-pronounce-status">
+        <h2>當前查詢單字：<span id="currentWord">None</span></h2>
+        <p class="conan-pronounce-play-tip">（請點擊下方播放器的 Play 按鈕，即可在同一個頁面直接收聽最正宗的真人美式發音）</p>
+      </div>
+
+      <table class="conan-pronounce-audio-table">
+        <thead>
+          <tr>
+            <th scope="col">語音來源網站</th>
+            <th scope="col">美式發音音訊播放器 (US Voice)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>FreeDict API (標準美音)</td>
+            <td>
+              <audio id="audioDict" controls src=""></audio>
+            </td>
+          </tr>
+          <tr>
+            <td>Wordnik Engine (本土美音)</td>
+            <td>
+              <audio id="audioWordnik" controls src=""></audio>
+            </td>
+          </tr>
+          <tr>
+            <td>Google TTS (美式英語)</td>
+            <td>
+              <audio id="audioGoogle" controls src=""></audio>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </main>
 
@@ -358,8 +341,8 @@
       var input = document.getElementById("masterSearch");
       var hint = document.getElementById("pronounceHint");
 
-      function triggerQuadSearch() {
-        var word = input.value.trim();
+      function triggerVoiceSearch() {
+        var word = input.value.trim().toLowerCase();
         hint.textContent = "";
 
         if (!word) {
@@ -368,22 +351,22 @@
           return;
         }
 
-        // 同步聯動更換四個內嵌網頁的關鍵字網址
-        document.getElementById("frameYouGlish").src =
-          "https://youglish.com/embed/search/" + encodeURIComponent(word) + "/us?toggleui=0";
-        document.getElementById("frameDictionary").src =
-          "https://www.dictionary.com/browse/" + encodeURIComponent(word);
-        document.getElementById("frameMerriam").src =
-          "https://www.merriam-webster.com/dictionary/" + encodeURIComponent(word);
-        document.getElementById("frameCollins").src =
-          "https://www.collinsdictionary.com/dictionary/english/" + encodeURIComponent(word);
+        document.getElementById("currentWord").textContent = word;
 
-        hint.textContent = "已同步搜尋「" + word + "」。若某格空白，可能是該站禁止內嵌顯示。";
+        // 核心聯動：動態將各大渠道的官方真人美音 MP3 網址注入到 HTML 的 audio 標籤中
+        document.getElementById("audioDict").src =
+          "https://api.dictionaryapi.dev/media/pronunciations/en/" + word + "-us.mp3";
+        document.getElementById("audioWordnik").src =
+          "https://audio.wordnik.com/101000/" + word + ".mp3";
+        document.getElementById("audioGoogle").src =
+          "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=en-us&q=" + encodeURIComponent(word);
+
+        hint.textContent = "已同步抓取「" + word + "」的美音網址，請點各列 Play 播放。";
       }
 
       form.addEventListener("submit", function (e) {
         e.preventDefault();
-        triggerQuadSearch();
+        triggerVoiceSearch();
       });
     })();
   </script>

@@ -12,6 +12,17 @@
   var INDEX_HREF = "index.html";
   var SERIES = "[辦案筆記]";
 
+  /** 從 CHAIN id（如 01-標點符號）取出偵探編號前綴 */
+  function dossierNo(id) {
+    var m = /^(\d{2})/.exec(id);
+    return m ? m[1] : "";
+  }
+
+  function navLinkText(entry) {
+    var no = dossierNo(entry.id);
+    return SERIES + " " + no + " " + entry.title;
+  }
+
   function buildNavHtml(noteId) {
     var cur = CHAIN.findIndex(function (x) {
       return x.id === noteId;
@@ -27,9 +38,7 @@
         '<a class="conan-notes-nav-link conan-notes-nav-link--prev" href="' +
           prev.href +
           '"><span class="conan-notes-nav-chevron" aria-hidden="true">‹</span><span class="conan-notes-nav-text">' +
-          SERIES +
-          " " +
-          prev.title +
+          navLinkText(prev) +
           "</span></a>"
       );
     } else {
@@ -48,9 +57,7 @@
         '<a class="conan-notes-nav-link conan-notes-nav-link--next" href="' +
           next.href +
           '"><span class="conan-notes-nav-text">' +
-          SERIES +
-          " " +
-          next.title +
+          navLinkText(next) +
           '</span><span class="conan-notes-nav-chevron" aria-hidden="true">›</span></a>'
       );
     } else {

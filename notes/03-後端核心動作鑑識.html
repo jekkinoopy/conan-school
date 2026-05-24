@@ -1,0 +1,168 @@
+﻿<!doctype html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>03 後端核心動作鑑識｜辦案筆記｜米花町偵探學園</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="../Conan.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body class="conan-school">
+  <header class="conan-topbar">
+    <a class="conan-logo" href="../index.html">米花町偵探學園</a>
+    <nav class="conan-nav" aria-label="主選單">
+      <a href="../index.html#top">關於我們</a>
+      <a href="../index.html#features">辦案機能</a>
+      <a href="../index.html#news">事件簿</a>
+      <a href="index.html">辦案筆記</a>
+      <a href="../index.html#contact">聯絡方式</a>
+      <a class="conan-nav-peer" href="https://jekkinoopy.github.io/WebDev-Notes/courses/07-projects/practice/crayon/index.html">春日部體重管理之壘</a>
+    </nav>
+    <div class="conan-auth">
+      <a href="../03-login.php" class="conan-btn conan-btn-login">登入</a>
+      <a href="../01-register.html" class="conan-btn conan-btn-register">註冊</a>
+    </div>
+  </header>
+
+  <main class="conan-notes-main" id="top">
+    <a class="conan-back-link" href="index.html"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> 辦案筆記目錄</a>
+    <a class="conan-back-link conan-back-link-secondary" href="../index.html"><i class="fa-solid fa-house"
+        aria-hidden="true"></i> 返回偵辦室</a>
+    <article class="conan-notes-dossier">
+      <p class="conan-form-label"><i class="fa-solid fa-folder-open" aria-hidden="true"></i> 偵探編號 03</p>
+      <h1>後端核心動作鑑識</h1>
+      <aside class="conan-notes-disclaimer" aria-labelledby="notes-disclaimer-title">
+        <p id="notes-disclaimer-title" class="conan-notes-disclaimer-title">
+          <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 偵辦警語
+        </p>
+        <p>以下內容<strong>大部分為 AI
+            整理</strong>；在本人複習驗證之前，<strong>正確性不予保證</strong>。請以偵探之眼謹慎偵查、交叉比對，勿將本筆記直接當成定案證據。</p>
+      </aside>
+
+      <section class="conan-notes-faction" aria-labelledby="lifecycle-title">
+        <h2 id="lifecycle-title" class="conan-notes-faction-title">
+          <i class="fa-solid fa-door-open" aria-hidden="true"></i> 偵辦核心：每一頁都是全新出貨
+        </h2>
+        <div class="conan-notes-list-wrap">
+          <ol class="conan-notes-list conan-notes-list--pending">
+            <li class="conan-notes-item">
+              <p class="conan-notes-symbol"><strong>生命週期</strong></p>
+              <ul class="conan-notes-bullets">
+                <li>每一次切換到新檔案，對伺服器來說都是<strong>獨立且全新的出貨</strong>；主機不會記得上一頁發生過什麼。</li>
+                <li>因此每一支 PHP 都要在最前面親自 <code>include "db_conn.php";</code>（或同等寫法），重新開啟資料庫大門，拿到 <code>$pdo</code>。</li>
+              </ul>
+              <p>門打開之後，才進入下面兩種完全不同的偵辦方向。</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <p class="conan-notes-intro">在米花町的資料庫法庭中，處理表單資料時，主要分為兩個方向。一個是「<strong>建立新線索</strong>」，另一個是「<strong>核對既有證詞</strong>」：</p>
+
+      <section class="conan-notes-faction" aria-labelledby="register-action-title">
+        <h2 id="register-action-title" class="conan-notes-faction-title">
+          <i class="fa-solid fa-user-plus" aria-hidden="true"></i> 1. 嫌疑犯註冊（<a href="../02-api_register.php"><code>02-api_register.php</code></a>）
+        </h2>
+        <p class="conan-notes-faction-desc"><strong>偵辦動作：</strong>「插進資料庫（新增）」</p>
+
+        <div class="conan-notes-list-wrap">
+          <ol class="conan-notes-list conan-notes-list--pending">
+            <li class="conan-notes-item">
+              <p class="conan-notes-symbol"><strong>大腦思路</strong></p>
+              <ul class="conan-notes-bullets">
+                <li>使用者是第一次來，資料庫裡面根本沒有這個人的資料。</li>
+                <li>打開資料庫後，要把他填的帳密「塞進去（INSERT）」，在 <code>members</code> 資料表裡建立一筆全新的歷史紀錄。</li>
+              </ul>
+              <div class="conan-notes-code">
+                <p class="conan-notes-code-label"><i class="fa-solid fa-database" aria-hidden="true"></i> 破案 SQL 範例</p>
+                <pre class="conan-notes-code-block"><code>INSERT INTO `members` (`members`.`account`, `members`.`password`) -- 指定資料表與欄位（表名欄位加反單引號、用點串接）
+VALUES ('{$_POST['account']}', '{$_POST['password']}'); -- 填入對齊的純文字值（外層加單引號、變數加大括號、結尾加分號）</code></pre>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="conan-notes-faction" aria-labelledby="login-action-title">
+        <h2 id="login-action-title" class="conan-notes-faction-title">
+          <i class="fa-solid fa-user-check" aria-hidden="true"></i> 2. 核心身分登入（<a href="../03-login.php"><code>04-api_login.php</code></a>）
+        </h2>
+        <p class="conan-notes-faction-desc"><strong>偵辦動作：</strong>「核對資料庫（查詢）」</p>
+
+        <div class="conan-notes-list-wrap">
+          <ol class="conan-notes-list conan-notes-list--pending">
+            <li class="conan-notes-item">
+              <p class="conan-notes-symbol"><strong>大腦思路</strong></p>
+              <ul class="conan-notes-bullets">
+                <li>這時候資料庫裡面已經有之前註冊好的資料了。</li>
+                <li>打開資料庫，不是要塞新東西，而是要把他現在輸入的帳密，拿去跟裡面已經存在的資料「對對看、數數看（SELECT COUNT）」，看能不能對得到人。</li>
+              </ul>
+              <div class="conan-notes-code">
+                <p class="conan-notes-code-label"><i class="fa-solid fa-database" aria-hidden="true"></i> 破案 SQL 範例</p>
+                <pre class="conan-notes-code-block"><code>SELECT COUNT(*) -- 統計符合條件的資料總筆數（右手小拇指 shift + 中指 8）
+FROM `members` -- 從指定的資料表搜尋（表名欄位加反單引號）
+WHERE `members`.`account` = '{$_POST['account']}' AND `members`.`password` = '{$_POST['password']}'; -- 篩選符合帳密的線索（用點串接、結尾加分號）</code></pre>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <p class="conan-notes-legend" role="note">
+        <i class="fa-solid fa-lightbulb" aria-hidden="true"></i> <strong>一秒區分結論</strong><br>
+        註冊 ➜ <code>INSERT</code>，資料庫裡還沒這個人，要「塞進去」。<br>
+        登入 ➜ <code>SELECT COUNT(*)</code>，資料庫裡已有紀錄，要「對對看有沒有這一筆」。
+      </p>
+
+      <div class="conan-notes-nav-wrap">
+        <div id="conan-notes-nav-root" data-note-id="03-後端核心動作鑑識"></div>
+      </div>
+    </article>
+  </main>
+
+  <script src="../conan-notes-nav.js"></script>
+  <footer id="contact" class="conan-site-footer">
+    <h2 class="conan-footer-title">米花町偵探學園</h2>
+    <nav class="conan-footer-nav" aria-label="頁尾連結">
+      <a href="../01-register.html">註冊練習</a>
+      <a href="../03-login.php">登入練習</a>
+      <a href="index.html">辦案筆記</a>
+      <a href="https://jekkinoopy.github.io/WebDev-Notes/courses/01-database/php/s02-register.php">註冊筆記</a>
+      <a href="https://jekkinoopy.github.io/WebDev-Notes/courses/01-database/php/s03-login.php">登入筆記</a>
+      <a href="https://jekkinoopy.github.io/WebDev-Notes/courses/01-database/php/index.html">PHP 課程索引</a>
+      <a href="https://jekkinoopy.github.io/WebDev-Notes/courses/07-projects/practice/crayon/index.html">春日部體重管理之壘</a>
+    </nav>
+    <ul class="conan-contact-list">
+      <li>
+        <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+        米花町 · 偵辦室練習專區（conan-school）
+      </li>
+      <li>
+        <i class="fa-solid fa-server" aria-hidden="true"></i>
+        資料庫：localhost / school
+      </li>
+      <li>
+        <i class="fa-solid fa-file-export" aria-hidden="true"></i>
+        移送 API：02-api_register.php · 04-api_login.php
+      </li>
+    </ul>
+    <div data-practice-peer-nav data-current="conan" data-base="../../"></div>
+    <div class="conan-footer-bottom">
+      <p class="conan-copy">&copy; 2026 努比的全端筆記 · 真相只有一個</p>
+      <p class="conan-footer-meta">
+        <a href="https://jekkinoopy.github.io/WebDev-Notes/courses/01-database/php/index.html">回到筆記首頁</a>
+        <span aria-hidden="true">|</span>
+        <a href="#top">回到頂部</a>
+      </p>
+    </div>
+  </footer>
+  <script src="../../practice-peer-nav.js"></script>
+</body>
+
+</html>

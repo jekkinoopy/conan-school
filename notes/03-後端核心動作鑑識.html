@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>03 後端核心動作鑑識｜辦案筆記｜米花町偵探學園</title>
+  <title>辦案筆記 | 偵探編號 03 · 後端核心動作鑑識｜米花町偵探學園</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="../Conan.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -34,7 +34,7 @@
       <div class="conan-notes-nav-root" data-note-id="03-後端核心動作鑑識"></div>
     </div>
     <article class="conan-notes-dossier">
-      <p class="conan-form-label"><i class="fa-solid fa-folder-open" aria-hidden="true"></i> 偵探編號 03</p>
+      <p class="conan-form-label"><i class="fa-solid fa-folder-open" aria-hidden="true"></i> 辦案筆記 | 偵探編號 03</p>
       <h1>後端核心動作鑑識</h1>
       <aside class="conan-notes-disclaimer" aria-labelledby="notes-disclaimer-title">
         <p id="notes-disclaimer-title" class="conan-notes-disclaimer-title">
@@ -56,6 +56,13 @@
                 <li>每一次切換到新檔案，對伺服器來說都是<strong>獨立且全新的出貨</strong>；主機不會記得上一頁發生過什麼。</li>
                 <li>因此每一支 PHP 都要在最前面親自 <code>include "db_conn.php";</code>（或同等寫法），重新開啟資料庫大門，拿到 <code>$pdo</code>。</li>
               </ul>
+              <div class="conan-notes-code">
+                <p class="conan-notes-code-label"><i class="fa-solid fa-code" aria-hidden="true"></i> <code>db_conn.php</code>（資料庫連線檔）</p>
+                <pre class="conan-notes-code-block"><code>&lt;?php
+$dsn = "mysql:host=localhost;charset=utf8;dbname=school";
+$pdo = new PDO($dsn, "root", "");
+?&gt;</code></pre>
+              </div>
               <p>門打開之後，才進入下面兩種完全不同的偵辦方向。</p>
             </li>
           </ol>
@@ -113,11 +120,13 @@ WHERE `members`.`account` = '{$_POST['account']}' AND `members`.`password` = '{$
         </div>
       </section>
 
-      <p class="conan-notes-legend" role="note">
-        <i class="fa-solid fa-lightbulb" aria-hidden="true"></i> <strong>一秒區分結論</strong><br>
-        註冊 ➜ <code>INSERT</code>，資料庫裡還沒這個人，要「塞進去」。<br>
-        登入 ➜ <code>SELECT COUNT(*)</code>，資料庫裡已有紀錄，要「對對看有沒有這一筆」。
-      </p>
+      <div class="conan-notes-list-wrap">
+        <div class="conan-notes-item conan-notes-item--legend" role="note">
+          <p class="conan-notes-symbol"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i> <strong>一秒區分結論</strong></p>
+          <p>註冊用 <code>INSERT</code>，資料庫裡還沒這個人，要「塞進去」。</p>
+          <p>登入用 <code>SELECT COUNT(*)</code>，資料庫裡已有紀錄，要「對對看有沒有這一筆」。</p>
+        </div>
+      </div>
 
       <div class="conan-notes-nav-wrap">
         <div class="conan-notes-nav-root" data-note-id="03-後端核心動作鑑識"></div>
@@ -125,7 +134,7 @@ WHERE `members`.`account` = '{$_POST['account']}' AND `members`.`password` = '{$
     </article>
   </main>
 
-  <script src="../conan-notes-nav.js"></script>
+  <script src="../conan-notes-nav.js?v=3"></script>
   <footer id="contact" class="conan-site-footer">
     <h2 class="conan-footer-title">米花町偵探學園</h2>
     <nav class="conan-footer-nav" aria-label="其他練習專區">

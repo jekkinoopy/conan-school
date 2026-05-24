@@ -10,7 +10,7 @@
   ];
 
   var INDEX_HREF = "index.html";
-  var SERIES = "[辦案筆記]";
+  var SERIES = "辦案筆記";
 
   /** 從 CHAIN id（如 01-標點符號）取出偵探編號前綴 */
   function dossierNo(id) {
@@ -20,7 +20,11 @@
 
   function navLinkText(entry) {
     var no = dossierNo(entry.id);
-    return SERIES + " " + no + " " + entry.title;
+    return SERIES + " | 偵探編號 " + no + " · " + entry.title;
+  }
+
+  function navIndexText() {
+    return SERIES + " | 目錄";
   }
 
   function buildNavHtml(noteId) {
@@ -46,8 +50,8 @@
         '<a class="conan-notes-nav-link conan-notes-nav-link--prev" href="' +
           INDEX_HREF +
           '"><span class="conan-notes-nav-chevron" aria-hidden="true">‹</span><span class="conan-notes-nav-text">' +
-          SERIES +
-          " 目錄</span></a>"
+          navIndexText() +
+          "</span></a>"
       );
     }
 
@@ -65,8 +69,8 @@
         '<a class="conan-notes-nav-link conan-notes-nav-link--next" href="' +
           INDEX_HREF +
           '"><span class="conan-notes-nav-text">' +
-          SERIES +
-          ' 目錄</span><span class="conan-notes-nav-chevron" aria-hidden="true">›</span></a>'
+          navIndexText() +
+          '</span><span class="conan-notes-nav-chevron" aria-hidden="true">›</span></a>'
       );
     }
 
@@ -86,6 +90,50 @@
 
     roots.forEach(function (root) {
       root.innerHTML = html;
+    });
+  });
+
+  /** 辦案筆記程式碼區塊：語法高亮（配色由 Conan.css 高對比覆寫） */
+  var HLJS_JS =
+    "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js";
+
+  function loadHljs(cb) {
+    if (window.hljs) {
+      cb();
+      return;
+    }
+    var s = document.createElement("script");
+    s.src = HLJS_JS;
+    s.onload = cb;
+    document.head.appendChild(s);
+  }
+
+  function guessCodeLang(block) {
+    var wrap = block.closest(".conan-notes-code");
+    var labelText = wrap
+      ? ((wrap.querySelector(".conan-notes-code-label") || {}).textContent || "")
+      : "";
+    var sample = block.textContent || "";
+    if (/\.php|pdo|include|^\s*<\?php/mi.test(labelText + sample)) return "php";
+    if (/SQL|INSERT|SELECT|WHERE|VALUES/i.test(labelText + sample)) return "sql";
+    return "plaintext";
+  }
+
+  function highlightCodeBlocks() {
+    document.querySelectorAll(".conan-notes-code-block code").forEach(function (el) {
+      if (el.classList.contains("hljs")) return;
+      if (!/language-/.test(el.className)) {
+        el.classList.add("language-" + guessCodeLang(el));
+      }
+      hljs.highlightElement(el);
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    if (!document.querySelector(".conan-notes-code-block")) return;
+    loadHljs(function () {
+      hljs.configure({ ignoreUnescapedHTML: true });
+      highlightCodeBlocks();
     });
   });
 })();

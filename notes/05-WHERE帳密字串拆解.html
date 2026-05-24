@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>05 WHERE 帳密字串拆解｜辦案筆記｜米花町偵探學園</title>
+  <title>辦案筆記 | 偵探編號 05 · WHERE 帳密字串：六零件鍵位拆解｜米花町偵探學園</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="../Conan.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -34,7 +34,7 @@
       <div class="conan-notes-nav-root" data-note-id="05-WHERE帳密字串拆解"></div>
     </div>
     <article class="conan-notes-dossier">
-      <p class="conan-form-label"><i class="fa-solid fa-folder-open" aria-hidden="true"></i> 偵探編號 05</p>
+      <p class="conan-form-label"><i class="fa-solid fa-folder-open" aria-hidden="true"></i> 辦案筆記 | 偵探編號 05</p>
       <h1>WHERE 帳密字串：六零件鍵位拆解</h1>
       <aside class="conan-notes-disclaimer" aria-labelledby="notes-disclaimer-title">
         <p id="notes-disclaimer-title" class="conan-notes-disclaimer-title">
@@ -71,14 +71,14 @@
               <p><strong>意義：</strong>比對、連連看。讓左邊的欄位「等於」右邊送進來的內容。</p>
             </li>
             <li class="conan-notes-item">
-              <p class="conan-notes-symbol"><code>' '</code>（外層單引號組）</p>
+              <p class="conan-notes-symbol"><code>''</code>（外層單引號組）</p>
               <p class="conan-notes-keyboard"><strong>鍵位指法：</strong>右小指 · 右1</p>
               <p><strong>意義：</strong><strong>SQL 的文字規定</strong>。比對內容是字串時，左右必須用單引號夾住；沒加，資料庫會當成數字或指令而報錯。</p>
             </li>
             <li class="conan-notes-item">
               <p class="conan-notes-symbol"><code>{ }</code>（大括號組）</p>
               <p class="conan-notes-keyboard"><strong>鍵位指法：</strong>左小指 Shift ＋ 右小指 · 上1 右1·右2</p>
-              <p><strong>意義：</strong><strong>PHP 的變數規定</strong>。整段 SQL 包在雙引號字串 <code>"$sql=..."</code> 裡時，若要在字串內直接塞帶中括號的變數（<code>$_POST[...]</code>），必須用大括號包住，PHP 才會當成完整變數、不會解讀錯誤。</p>
+              <p><strong>意義：</strong><strong>PHP 的變數規定</strong>。整段 SQL 包在雙引號字串 <code>"$sql=..."</code> 裡時，若要在字串內直接塞帶中括號的變數（如 <code>$_POST['account']</code>），必須用大括號包住，PHP 才會當成完整變數、不會解讀錯誤。</p>
             </li>
             <li class="conan-notes-item">
               <p class="conan-notes-symbol"><code>$_POST</code></p>
@@ -101,14 +101,17 @@
         <ol class="conan-notes-bullets">
           <li>反單引號標示資料庫欄位 <code>`account`</code></li>
           <li><code>=</code> 準備比對</li>
-          <li>單引號 <code>' '</code> 為字串搭外框</li>
+          <li>單引號 <code>''</code> 為字串搭外框</li>
           <li>大括號 <code>{ }</code> 保護字串內的複雜變數</li>
           <li><code>$_POST</code> 接表單整包</li>
           <li><code>['account']</code> 取出帳號欄位的值</li>
         </ol>
-        <p class="conan-notes-legend" role="note">
-          <i class="fa-solid fa-lightbulb" aria-hidden="true"></i> 密碼欄位同理：<code>`password`='{$_POST['password']}'</code>，僅最後的鍵名改成 <code>password</code>。
-        </p>
+        <div class="conan-notes-list-wrap">
+          <div class="conan-notes-item conan-notes-item--legend" role="note">
+            <p class="conan-notes-symbol"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i> <strong>密碼欄位同理</strong></p>
+            <p><code>`password`='{$_POST['password']}'</code>，僅最後的鍵名改成 <code>password</code>。</p>
+          </div>
+        </div>
       </section>
 
       <div class="conan-notes-nav-wrap">
@@ -117,7 +120,7 @@
     </article>
   </main>
 
-  <script src="../conan-notes-nav.js"></script>
+  <script src="../conan-notes-nav.js?v=3"></script>
   <footer id="contact" class="conan-site-footer">
     <h2 class="conan-footer-title">米花町偵探學園</h2>
     <nav class="conan-footer-nav" aria-label="其他練習專區">

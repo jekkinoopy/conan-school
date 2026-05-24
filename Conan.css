@@ -876,19 +876,40 @@
   text-indent: 0.14em;
 }
 
-.conan-notes-legend {
-  margin: 0 0 1.25rem;
-  padding: 0.65rem 0.85rem;
-  font-size: 0.88rem;
-  line-height: 1.65;
-  color: var(--conan-dark);
+/* 結論卡（版型同 conan-notes-item：標題 conan-notes-symbol + 內文段落，無左側序號） */
+.conan-notes-list-wrap > .conan-notes-item--legend {
+  margin-top: 0.65rem;
+  margin-bottom: 0;
+  padding: 0.85rem 1rem 0.9rem;
   background: var(--conan-bg);
-  border: 1px dashed var(--conan-border);
-  border-radius: 6px;
+  border: 1px solid var(--conan-border);
+  border-radius: 4px;
 }
 
-.conan-notes-legend strong {
+.conan-notes-item--legend::before {
+  content: none;
+}
+
+.conan-notes-item--legend .conan-notes-symbol {
+  margin: 0;
+  font-size: 0.95rem;
   color: var(--conan-navy);
+}
+
+.conan-notes-item--legend .conan-notes-symbol .fa-lightbulb {
+  margin-right: 0.3rem;
+  color: var(--conan-crimson);
+}
+
+.conan-notes-item--legend > p:not(.conan-notes-symbol) {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--conan-dark);
+}
+
+.conan-notes-item--legend > p + p {
+  margin-top: 0.55rem;
 }
 
 .conan-notes-index-status {
@@ -913,6 +934,12 @@
   font-size: 0.9rem;
   line-height: 1.55;
   color: var(--conan-dark);
+}
+
+.conan-notes-item > p + p,
+.conan-notes-item > p + ul,
+.conan-notes-item > ul + p {
+  margin-top: 0.55rem;
 }
 
 .conan-notes-bullets {
@@ -966,12 +993,12 @@
   color: var(--conan-crimson);
 }
 
-/* 程式碼筆記（選填，練習時自行補上） */
-.conan-notes-item > .conan-notes-code {
+/* 程式碼筆記（深底高對比彩字、長行換行、無橫向捲軸） */
+.conan-notes-code {
   margin: 0;
   padding: 0.55rem 0.65rem 0.6rem;
-  background: color-mix(in srgb, var(--conan-navy) 6%, var(--conan-card-bg));
-  border: 1px solid color-mix(in srgb, var(--conan-navy) 18%, transparent);
+  background: #2b3340;
+  border: 1px solid #6b7c94;
   border-radius: 6px;
 }
 
@@ -979,31 +1006,108 @@
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  margin: 0 0 0.3rem;
+  margin: 0 0 0.35rem;
   font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 0.02em;
-  color: var(--conan-navy);
+  color: #ffe082;
+}
+
+.conan-notes-code-label code {
+  color: #80d8ff;
+  background: rgba(128, 216, 255, 0.22);
+  border: none;
 }
 
 .conan-notes-code-block {
   margin: 0;
-  padding: 0.55rem 0.65rem;
+  padding: 0;
   font-family: ui-monospace, "Cascadia Code", "Consolas", monospace;
   font-size: 0.82rem;
-  line-height: 1.55;
-  color: #1e293b;
-  background: #f1f5f9;
+  line-height: 1.6;
+  background: #2b3340;
   border-radius: 4px;
-  overflow-x: auto;
-  white-space: pre;
+  overflow: hidden;
 }
 
 .conan-notes-code-block code {
-  padding: 0;
-  background: transparent;
+  display: block;
+  margin: 0;
+  padding: 0.65rem 0.75rem;
+  color: #f5f7fa;
+  background: #2b3340;
   border: none;
   font-size: inherit;
+  overflow-x: hidden;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.conan-notes-code-block code.hljs {
+  padding: 0.65rem 0.75rem;
+  color: #f5f7fa;
+  background: #2b3340;
+  overflow-x: hidden;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+/* highlight.js 彩字：提高明度，方便視力不佳時閱讀 */
+.conan-notes-code-block .hljs {
+  color: #f5f7fa;
+  background: #2b3340;
+}
+
+.conan-notes-code-block .hljs-comment,
+.conan-notes-code-block .hljs-quote {
+  color: #c8e6a0;
+  font-style: italic;
+}
+
+.conan-notes-code-block .hljs-keyword,
+.conan-notes-code-block .hljs-selector-tag,
+.conan-notes-code-block .hljs-built_in,
+.conan-notes-code-block .hljs-name {
+  color: #ff9de6;
+}
+
+.conan-notes-code-block .hljs-string,
+.conan-notes-code-block .hljs-regexp,
+.conan-notes-code-block .hljs-addition {
+  color: #9aff9a;
+}
+
+.conan-notes-code-block .hljs-number,
+.conan-notes-code-block .hljs-literal,
+.conan-notes-code-block .hljs-symbol,
+.conan-notes-code-block .hljs-bullet {
+  color: #ffd580;
+}
+
+.conan-notes-code-block .hljs-title,
+.conan-notes-code-block .hljs-section,
+.conan-notes-code-block .hljs-attribute,
+.conan-notes-code-block .hljs-variable,
+.conan-notes-code-block .hljs-template-variable,
+.conan-notes-code-block .hljs-type {
+  color: #82eaff;
+}
+
+.conan-notes-code-block .hljs-meta,
+.conan-notes-code-block .hljs-selector-id,
+.conan-notes-code-block .hljs-selector-class {
+  color: #b8a0ff;
+}
+
+.conan-notes-code-block .hljs-emphasis {
+  font-style: italic;
+}
+
+.conan-notes-code-block .hljs-strong {
+  font-weight: 700;
+  color: #fff;
 }
 
 .conan-notes-code-empty {
@@ -1224,7 +1328,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  max-width: min(48%, 22rem);
+  max-width: min(48%, 26rem);
   box-sizing: border-box;
   padding: 0.6rem 1rem;
   font-size: 0.86rem;

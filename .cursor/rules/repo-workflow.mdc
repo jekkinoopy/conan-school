@@ -63,6 +63,7 @@ alwaysApply: true
 - **改目錄、頁尾、peer-nav、更名**後：用 `notes/*.html` 對照目錄與 `CHAIN`；禁止用舊版 `index.html` 覆寫而漏條目。
 - 讀者正文只寫**知識與題目**；協作說明、聊天口吻勿寫進 HTML。
 - 頁底 `conan-notes-nav` 已負責上下則；正文勿加「下一步：請進入 xxx」。
+- `conan-notes-list` 已是 `<ol>` 自動編號（左側 1. 2. 3.）；條目標題**勿再寫** ①②③，避免重複編號。
 
 ## 對外連結
 

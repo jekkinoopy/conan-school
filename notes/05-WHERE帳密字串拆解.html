@@ -45,7 +45,8 @@
       </aside>
 
       <p class="conan-notes-intro">接續 <a href="03-後端核心動作鑑識.html">03 後端核心動作鑑識</a> 登入用的
-        <code>WHERE</code> 片段。本篇<strong>不跳步</strong>：從最左到最右，六個零件各說明<strong>按哪顆鍵</strong>與<strong>為什麼要敲</strong>。符號總表見 <a href="01-標點符號.html">01 標點符號</a>。</p>
+        <code>WHERE</code> 片段。本篇<strong>不跳步</strong>：從最左到最右，六個零件各說明<strong>指法</strong>與<strong>為什麼要敲</strong>。符號總表見 <a href="01-標點符號.html">01 標點符號</a>。</p>
+      <p class="conan-notes-intro"><strong>指法讀法：</strong>只寫「哪隻手 · 哪根指 · 上／下／左／右幾格」；要按 Shift 寫「小指 Shift」。不標鍵帽字母（不寫 L、P、~ 在哪）。</p>
 
       <div class="conan-notes-code">
         <p class="conan-notes-code-label"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i> 案發現場（登入 SQL 其中一段）</p>
@@ -61,32 +62,32 @@
           <ol class="conan-notes-list conan-notes-list--pending">
             <li class="conan-notes-item">
               <p class="conan-notes-symbol"><code>`account`</code>（反單引號組）</p>
-              <p class="conan-notes-keyboard"><strong>按鍵：</strong>左手小指敲鍵盤最左上角（<code>~</code> 下面那顆）。</p>
+              <p class="conan-notes-keyboard"><strong>鍵位指法：</strong>左小指 · 上2 左1（同 01 反單引號）</p>
               <p><strong>意義：</strong><strong>SQL 的地盤規定</strong>。寫到資料庫裡的「資料表名」或「欄位名」，一律用反單引號包起來，告訴資料庫：這是指定的格子名稱。</p>
             </li>
             <li class="conan-notes-item">
               <p class="conan-notes-symbol"><code>=</code>（等於）</p>
-              <p class="conan-notes-keyboard"><strong>按鍵：</strong>右手小指敲右上角的 <code>=</code>。</p>
+              <p class="conan-notes-keyboard"><strong>鍵位指法：</strong>右小指 · 上2 右3</p>
               <p><strong>意義：</strong>比對、連連看。讓左邊的欄位「等於」右邊送進來的內容。</p>
             </li>
             <li class="conan-notes-item">
               <p class="conan-notes-symbol"><code>' '</code>（外層單引號組）</p>
-              <p class="conan-notes-keyboard"><strong>按鍵：</strong>右手小指敲 <code>L</code> 右邊第二顆（單引號）。</p>
+              <p class="conan-notes-keyboard"><strong>鍵位指法：</strong>右小指 · 右1（同 01 單引號）</p>
               <p><strong>意義：</strong><strong>SQL 的文字規定</strong>。比對內容是字串時，左右必須用單引號夾住；沒加，資料庫會當成數字或指令而報錯。</p>
             </li>
             <li class="conan-notes-item">
               <p class="conan-notes-symbol"><code>{ }</code>（大括號組）</p>
-              <p class="conan-notes-keyboard"><strong>按鍵：</strong>右手小指 Shift + <code>P</code> 右邊兩顆（<code>{</code>、<code>}</code>）。</p>
+              <p class="conan-notes-keyboard"><strong>鍵位指法：</strong>左小指 Shift ＋ 右小指 · 上1 右1·右2（同 01 大括號）</p>
               <p><strong>意義：</strong><strong>PHP 的變數規定</strong>。整段 SQL 包在雙引號字串 <code>"$sql=..."</code> 裡時，若要在字串內直接塞帶中括號的變數（<code>$_POST[...]</code>），必須用大括號包住，PHP 才會當成完整變數、不會解讀錯誤。</p>
             </li>
             <li class="conan-notes-item">
               <p class="conan-notes-symbol"><code>$_POST</code></p>
-              <p class="conan-notes-keyboard"><strong>按鍵：</strong><code>$</code>（右手 中指 上2）+ 大寫 <code>_POST</code>（底線：右手 小指 Shift + 中指 上2）。</p>
+              <p class="conan-notes-keyboard"><strong>鍵位指法：</strong><code>$</code> 右小指 Shift＋左食指 上2；<code>_</code> 右小指 Shift＋右中指 上2；POST 字母盲打</p>
               <p><strong>意義：</strong>PHP 內建陣列，接收上一頁表單 POST 送來的整包資料（例：<a href="../members/03-login.php"><code>members/03-login.php</code></a> → 登入 API）。</p>
             </li>
             <li class="conan-notes-item">
               <p class="conan-notes-symbol"><code>['account']</code>（中括號 + 單引號）</p>
-              <p class="conan-notes-keyboard"><strong>按鍵：</strong>先敲中括號 <code>[ ]</code>（右手 小指 右1 與 右2），裡面再敲單引號 <code>'account'</code>（右手 小指 右1）。</p>
+              <p class="conan-notes-keyboard"><strong>鍵位指法：</strong><code>[</code> 右小指 右1·上1·上2；<code>]</code> 右小指 右2；<code>'</code> 右小指 右1；account 字母盲打</p>
               <p><strong>意義：</strong><strong>PHP 陣列指名</strong>。POST 包裹裡有多個欄位（帳號、密碼等），<code>['account']</code> 表示取出 name 為 <code>account</code> 的那一欄輸入值。</p>
             </li>
           </ol>

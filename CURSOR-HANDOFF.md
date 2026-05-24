@@ -4,13 +4,14 @@
 
 - 本 repo：<https://github.com/jekkinoopy/conan-school>
 - 母筆記站：[WebDev-Notes](https://github.com/jekkinoopy/WebDev-Notes) · [PHP 課程索引](https://jekkinoopy.github.io/WebDev-Notes/courses/01-database/php/index.html)
+- **完整協作規範**：`.cursor/rules/repo-workflow.mdc`（本檔不重複全文；更新規範時改寫該檔既有章節，勿堆疊重複段落）
 
 ## 開工
 
 1. 看〈變更〉最新日期。
-2. 動**辦案筆記**前對版型：`notes/01-標點符號.html`、`Conan.css`。
-3. **只動使用者點名的檔**。
-4. 協作規則有變 → 在〈變更〉**加一則**（勿刪舊的）。
+2. 動**辦案筆記**前對版型：`notes/01-標點符號.html`、`Conan.css`（單頁覆寫樣式寫在該頁，預設不改全站 CSS）。
+3. **只動使用者點名的檔**；PHP／DB **練習程式**須練完且當次明確要求才改；共通區塊用 class + `include`。
+4. 規則有變 → 迭代 `.cursor/rules/` 與本檔對應句；〈變更〉**加一則摘要**（勿刪舊的、勿把整段規範複製進來）。
 
 ## 本專案路徑
 
@@ -21,7 +22,7 @@
 | 筆記上下則 | `conan-notes-nav.js` → `CHAIN` |
 | 頁尾跨站連結 | `practice-peer-nav.js` |
 
-**新辦案筆記一則：**`notes/NN-….html` + 目錄 `<li>` + `CHAIN` 三處同步。細則見 `.cursor/rules/repo-workflow.mdc`。
+**新辦案筆記一則：**`notes/NN-….html` + 目錄 `<li>` + `CHAIN` 三處同步。
 
 ## Git commit（助理回覆結尾）
 
@@ -38,8 +39,8 @@ php -S localhost:8080
 ## 〈變更〉
 
 ### 2026-05-24
-- 需求：自 WebDev-Notes 獨立；帶入可攜協作規範（`.cursor/rules`、`CURSOR-HANDOFF`）。
-- 範圍：`docs/portable-collab-rules` 複製並專案化。
+- 自 WebDev-Notes 獨立；帶入可攜協作規範（`.cursor/rules`、`CURSOR-HANDOFF`）。
+- 邊界：學習專案不代寫練習程式；改動只限點名檔；樣式 class + `include` 共用、單頁覆寫不改 `Conan.css`；規範文檔採**迭代改寫**、勿文末堆疊重複章節。
 
 ---
 

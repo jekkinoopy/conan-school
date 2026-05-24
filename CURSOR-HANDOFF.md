@@ -26,7 +26,7 @@
 
 ## Git commit（助理回覆結尾）
 
-`fix:`／`feat:`／`style:` + 重點（**不超過 15 字**）。見 `.cursor/rules/git-commit.mdc`。**勿擅自 commit**，除非使用者明確要求。
+**有改檔 → 該則回覆結尾必附** `git add .` + `git commit -m "type: 重點"`（格式見 `.cursor/rules/git-commit.mdc`）；**漏附不行**。只給指令、**勿擅自執行** commit，除非使用者明確要求。
 
 ## 本機預覽
 
@@ -41,6 +41,7 @@ php -S localhost:8080
 ### 2026-05-24
 - 自 WebDev-Notes 獨立；帶入可攜協作規範（`.cursor/rules`、`CURSOR-HANDOFF`）。
 - 邊界：學習專案不代寫練習程式；改動只限點名檔；樣式 class + `include` 共用、單頁覆寫不改 `Conan.css`；規範文檔採**迭代改寫**、勿文末堆疊重複章節。
+- `git-commit.mdc`：明訂**改檔必附 commit 指令**（結尾、漏附視為違規）；仍不代為執行 commit。
 
 ---
 

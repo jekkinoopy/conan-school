@@ -28,6 +28,63 @@
       background: var(--conan-dark);
     }
 
+    .conan-pronounce-guide {
+      flex-shrink: 0;
+      padding: 0.85rem 1.25rem 0;
+    }
+
+    .conan-pronounce-guide-card {
+      max-width: var(--conan-content-max);
+      margin: 0 auto;
+      padding: 0.9rem 1.1rem 1rem;
+      background: var(--conan-card-bg);
+      border-left: 4px solid var(--conan-navy);
+      border-radius: 0 4px 4px 0;
+      box-shadow: 0 2px 10px var(--conan-shadow);
+    }
+
+    .conan-pronounce-guide-card h1 {
+      margin: 0.2rem 0 0.35rem;
+      font-size: 1.2rem;
+      color: var(--conan-dark);
+    }
+
+    .conan-pronounce-guide-card h2 {
+      margin: 0.85rem 0 0.4rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--conan-crimson);
+    }
+
+    .conan-pronounce-guide-steps {
+      margin: 0;
+      padding-left: 1.35rem;
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: var(--conan-dark);
+    }
+
+    .conan-pronounce-guide-steps > li + li {
+      margin-top: 0.35rem;
+    }
+
+    .conan-pronounce-guide-sources {
+      margin: 0.35rem 0 0;
+      padding-left: 1.1rem;
+      list-style: disc;
+    }
+
+    .conan-pronounce-guide-sources li {
+      margin-top: 0.2rem;
+    }
+
+    .conan-pronounce-guide-card code {
+      font-size: 0.92em;
+      padding: 0.1em 0.35em;
+      background: color-mix(in srgb, var(--conan-navy) 10%, var(--conan-bg));
+      border-radius: 3px;
+    }
+
     .conan-pronounce-quad-toolbar {
       display: flex;
       flex-wrap: wrap;
@@ -147,11 +204,11 @@
       letter-spacing: 0.02em;
     }
 
-    .conan-pronounce-dict-header--google {
+    .conan-pronounce-dict-header--youglish {
       background: color-mix(in srgb, var(--conan-crimson) 75%, #7c3aed);
     }
 
-    .conan-pronounce-dict-header--cambridge {
+    .conan-pronounce-dict-header--dictionary {
       background: var(--conan-stamp);
     }
 
@@ -159,7 +216,7 @@
       background: #15803d;
     }
 
-    .conan-pronounce-dict-header--oxford {
+    .conan-pronounce-dict-header--collins {
       background: color-mix(in srgb, var(--conan-crimson) 55%, #ea580c);
     }
 
@@ -207,45 +264,64 @@
   </header>
 
   <main id="top">
+    <section class="conan-pronounce-guide" aria-labelledby="pronounce-guide-title">
+      <article class="conan-pronounce-guide-card">
+        <p class="conan-form-label"><i class="fa-solid fa-headphones" aria-hidden="true"></i> 輔助工具 · Dev Dict Hub</p>
+        <h1>英文發音偵訊台</h1>
+        <p class="conan-form-sub">輸入一次關鍵字，四格同步聯動。適合在練 PHP／SQL 時查變數、函式、關鍵字的美音與多本字典對照。</p>
+        <h2 id="pronounce-guide-title">使用說明</h2>
+        <ol class="conan-pronounce-guide-steps">
+          <li>在下方搜尋列輸入<strong>英文單字</strong>（例如 <code>execute</code>、<code>members</code>），按「搜尋」或 Enter。</li>
+          <li>四格會<strong>同步聯動</strong>載入同一關鍵字，不必分開開四個分頁。</li>
+          <li>各格用途：
+            <ul class="conan-pronounce-guide-sources">
+              <li><strong>左上 YouGlish</strong>：真人美音影片，聽語境發音。</li>
+              <li><strong>右上 Dictionary.com</strong>：釋義與發音按鈕。</li>
+              <li><strong>左下 Merriam-Webster</strong>：韋氏詞典，美國常用讀音。</li>
+              <li><strong>右下 Collins</strong>：柯林斯英英釋義對照。</li>
+            </ul>
+          </li>
+          <li>若某格是<strong>空白</strong>，代表該站禁止被內嵌（<code>iframe</code>）；可改在新分頁開該字典官網，搜尋同一單字。</li>
+        </ol>
+      </article>
+    </section>
+
     <div class="conan-pronounce-quad-toolbar">
       <p class="conan-pronounce-quad-toolbar__title">
-        <i class="fa-solid fa-headphones" aria-hidden="true"></i> 英文發音偵訊台 · 四格同步
+        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i> 關鍵字搜尋
       </p>
       <form class="conan-pronounce-quad-search" id="pronounceForm">
         <label class="visually-hidden" for="masterSearch">關鍵字（英文）</label>
-        <input type="text" id="masterSearch" name="q" placeholder="輸入單字，四格同步搜尋…（例如 Data）"
+        <input type="text" id="masterSearch" name="q" placeholder="請輸入單字…"
           autocomplete="off" spellcheck="false" autofocus />
-        <button type="submit"><i class="fa-solid fa-bullhorn" aria-hidden="true"></i> 同步震撼搜尋</button>
+        <button type="submit"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i> 搜尋</button>
         <p class="conan-pronounce-quad-hint" id="pronounceHint" role="status" aria-live="polite"></p>
       </form>
     </div>
 
     <div class="conan-pronounce-quad-grid" aria-label="四格字典對照">
       <section class="conan-pronounce-dict-box">
-        <div class="conan-pronounce-dict-header conan-pronounce-dict-header--google">Google 翻譯（預設美音）</div>
+        <div class="conan-pronounce-dict-header conan-pronounce-dict-header--youglish">YouGlish · 真人美音影片</div>
         <div class="conan-pronounce-frame-wrap">
-          <iframe id="frameGoogle" title="Google 翻譯" src="about:blank"></iframe>
+          <iframe id="frameYouGlish" title="YouGlish 真人美音影片" src="about:blank"></iframe>
         </div>
       </section>
       <section class="conan-pronounce-dict-box">
-        <div class="conan-pronounce-dict-header conan-pronounce-dict-header--cambridge">Cambridge 劍橋（US 藍喇叭）
-        </div>
+        <div class="conan-pronounce-dict-header conan-pronounce-dict-header--dictionary">Dictionary.com · 字典</div>
         <div class="conan-pronounce-frame-wrap">
-          <iframe id="frameCambridge" title="Cambridge 字典" src="about:blank"></iframe>
+          <iframe id="frameDictionary" title="Dictionary.com 字典" src="about:blank"></iframe>
         </div>
       </section>
       <section class="conan-pronounce-dict-box">
-        <div class="conan-pronounce-dict-header conan-pronounce-dict-header--merriam">Merriam-Webster（美國本土老牌）
-        </div>
+        <div class="conan-pronounce-dict-header conan-pronounce-dict-header--merriam">Merriam-Webster · 韋氏詞典</div>
         <div class="conan-pronounce-frame-wrap">
-          <iframe id="frameMerriam" title="Merriam-Webster 字典" src="about:blank"></iframe>
+          <iframe id="frameMerriam" title="Merriam-Webster 韋氏詞典" src="about:blank"></iframe>
         </div>
       </section>
       <section class="conan-pronounce-dict-box">
-        <div class="conan-pronounce-dict-header conan-pronounce-dict-header--oxford">Oxford Learner's（權威美音對照）
-        </div>
+        <div class="conan-pronounce-dict-header conan-pronounce-dict-header--collins">Collins Dictionary · 詞典</div>
         <div class="conan-pronounce-frame-wrap">
-          <iframe id="frameOxford" title="Oxford 字典" src="about:blank"></iframe>
+          <iframe id="frameCollins" title="Collins Dictionary 詞典" src="about:blank"></iframe>
         </div>
       </section>
     </div>
@@ -273,7 +349,7 @@
     </ul>
     <div class="conan-footer-bottom">
       <p class="conan-copy">&copy; 2026 努比的全端筆記</p>
-</div>
+    </div>
   </footer>
 
   <script>
@@ -287,19 +363,20 @@
         hint.textContent = "";
 
         if (!word) {
-          hint.textContent = "請先輸入你想搜尋的關鍵字。";
+          hint.textContent = "請先輸入單字喔！";
           input.focus();
           return;
         }
 
-        document.getElementById("frameGoogle").src =
-          "https://translate.google.com/?sl=en&tl=zh-TW&text=" + encodeURIComponent(word) + "&op=translate";
-        document.getElementById("frameCambridge").src =
-          "https://dictionary.cambridge.org/dictionary/english/" + encodeURIComponent(word);
+        // 同步聯動更換四個內嵌網頁的關鍵字網址
+        document.getElementById("frameYouGlish").src =
+          "https://youglish.com/embed/search/" + encodeURIComponent(word) + "/us?toggleui=0";
+        document.getElementById("frameDictionary").src =
+          "https://www.dictionary.com/browse/" + encodeURIComponent(word);
         document.getElementById("frameMerriam").src =
           "https://www.merriam-webster.com/dictionary/" + encodeURIComponent(word);
-        document.getElementById("frameOxford").src =
-          "https://www.oxfordlearnersdictionaries.com/definition/english/" + encodeURIComponent(word);
+        document.getElementById("frameCollins").src =
+          "https://www.collinsdictionary.com/dictionary/english/" + encodeURIComponent(word);
 
         hint.textContent = "已同步搜尋「" + word + "」。若某格空白，可能是該站禁止內嵌顯示。";
       }

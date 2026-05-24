@@ -42,6 +42,9 @@ php -S localhost:8080
 
 ## 〈變更〉
 
+### 2026-05-24（晚）
+- `repo-workflow.mdc`「改動邊界」：補 2026-05-24 教訓——「怎麼做」只答文字、未點名不建檔；有改檔必附 commit；禁止連續道歉。
+
 ### 2026-05-24
 - 自 WebDev-Notes 獨立；帶入可攜協作規範（`.cursor/rules`、`CURSOR-HANDOFF`）。
 - 邊界：學習專案不代寫練習程式；改動只限點名檔；樣式 class + `include` 共用、單頁覆寫不改 `Conan.css`；規範文檔採**迭代改寫**、勿文末堆疊重複章節。

@@ -37,21 +37,68 @@
         <p id="notes-disclaimer-title" class="conan-notes-disclaimer-title">
           <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 偵辦警語
         </p>
-        <p>以下內容<strong>大部分為 AI 整理</strong>；在本人複習驗證之前，<strong>正確性不予保證</strong>。請以偵探之眼謹慎偵查、交叉比對，勿將本筆記直接當成定案證據。</p>
-        <p>內頁符號已親自確認者，會加蓋藍色矩形章「<strong>鑑識成功</strong>」（<strong>有章＝該符號已複核</strong>，無章＝待定案）。目錄條目旁的<strong>迷你章＝該篇已複習完成</strong>（整篇皆確認後才加，與單一符號章不同）。</p>
+        <p>未標「整篇已複習」的筆記，內容多為 AI 整理，複習前<strong>正確性不予保證</strong>。</p>
       </aside>
-      <p class="conan-notes-intro">筆記檔名為「編號-內容」，之後新單元請在此目錄追加條目。</p>
+      <p class="conan-notes-intro">新單元請同步：<code>notes/NN-….html</code>、本目錄、<code>conan-notes-nav.js</code> 的 <code>CHAIN</code>。</p>
 
-      <ol class="conan-notes-index-list">
-        <li><a href="01-標點符號.html">標點符號</a> — 疑點滿滿的標點符號（PHP / SQL 鍵位指法）</li>
-        <li><a href="02-PHP與SQL.html">PHP 與 SQL</a> — 誰是 PHP？誰是 SQL？（執行者與指令內容）</li>
-        <li><a href="03-後端核心動作鑑識.html">後端核心動作鑑識</a> — INSERT 註冊 vs SELECT COUNT 登入</li>
-        <li><a href="04-後台動態插頁與inc.html">後台動態插頁與 ?inc</a> — 05-admin 外殼、include、$_GET 傳令（標題可改）</li>
-        <li><a href="05-WHERE帳密字串拆解.html">WHERE 帳密六零件</a> — 登入 <code>WHERE</code> 片段由左而右鍵位拆解（不跳步）</li>
-        <!-- 新筆記：在 conan-notes-nav.js 的 CHAIN 追加一筆，內頁加 #conan-notes-nav-root；未完成則：
-        <li><a href="#" class="link-wip">02-內容 (WIP)</a> — 說明</li>
-        整篇複習完成後在 <li> 內加迷你章（見 Conan.css 註解） -->
-      </ol>
+      <ul class="conan-notes-index-legend" role="note" aria-label="目錄狀態說明">
+        <li><span class="conan-notes-index-badge conan-notes-index-badge--ok">整篇已複習</span> 內頁條目皆已鑑識</li>
+        <li><span class="conan-notes-index-badge">待複習</span> 尚有未定案條目</li>
+      </ul>
+
+      <ul class="conan-notes-index-grid">
+        <li class="conan-notes-index-card conan-notes-index-card--ok">
+          <a class="conan-notes-index-card__link" href="01-標點符號.html">
+            <span class="conan-notes-index-card__num">01</span>
+            <span>
+              <span class="conan-notes-index-card__title">標點符號</span>
+              <span class="conan-notes-index-card__desc">PHP / SQL 鍵位指法與符號用途</span>
+            </span>
+          </a>
+          <span class="conan-notes-index-badge conan-notes-index-badge--ok">整篇已複習</span>
+        </li>
+        <li class="conan-notes-index-card">
+          <a class="conan-notes-index-card__link" href="02-PHP與SQL.html">
+            <span class="conan-notes-index-card__num">02</span>
+            <span>
+              <span class="conan-notes-index-card__title">PHP 與 SQL</span>
+              <span class="conan-notes-index-card__desc">誰是執行者？誰是指令內容？</span>
+            </span>
+          </a>
+          <span class="conan-notes-index-badge">待複習</span>
+        </li>
+        <li class="conan-notes-index-card">
+          <a class="conan-notes-index-card__link" href="03-後端核心動作鑑識.html">
+            <span class="conan-notes-index-card__num">03</span>
+            <span>
+              <span class="conan-notes-index-card__title">後端核心動作鑑識</span>
+              <span class="conan-notes-index-card__desc">INSERT 註冊 vs SELECT COUNT 登入</span>
+            </span>
+          </a>
+          <span class="conan-notes-index-badge">待複習</span>
+        </li>
+        <li class="conan-notes-index-card">
+          <a class="conan-notes-index-card__link" href="04-後台動態插頁與inc.html">
+            <span class="conan-notes-index-card__num">04</span>
+            <span>
+              <span class="conan-notes-index-card__title">後台動態插頁與 ?inc</span>
+              <span class="conan-notes-index-card__desc">05-admin 外殼、include、$_GET 傳令</span>
+            </span>
+          </a>
+          <span class="conan-notes-index-badge">待複習</span>
+        </li>
+        <li class="conan-notes-index-card">
+          <a class="conan-notes-index-card__link" href="05-WHERE帳密字串拆解.html">
+            <span class="conan-notes-index-card__num">05</span>
+            <span>
+              <span class="conan-notes-index-card__title">WHERE 帳密六零件</span>
+              <span class="conan-notes-index-card__desc">登入 WHERE 片段由左而右鍵位拆解</span>
+            </span>
+          </a>
+          <span class="conan-notes-index-badge">待複習</span>
+        </li>
+        <!-- 整篇複習完：li 加 conan-notes-index-card--ok；徽章改 conan-notes-index-badge--ok「整篇已複習」；內頁移除 conan-notes-disclaimer -->
+      </ul>
     </article>
   </main>
 
@@ -77,7 +124,7 @@
     </ul>
     <div class="conan-footer-bottom">
       <p class="conan-copy">&copy; 2026 努比的全端筆記</p>
-</div>
+    </div>
   </footer>
 </body>
 

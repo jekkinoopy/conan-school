@@ -35,14 +35,6 @@
     <article class="conan-notes-dossier">
       <p class="conan-form-label"><i class="fa-solid fa-folder-open" aria-hidden="true"></i> 偵探編號 01</p>
       <h1>疑點重重的標點符號</h1>
-      <aside class="conan-notes-disclaimer" aria-labelledby="notes-disclaimer-title">
-        <p id="notes-disclaimer-title" class="conan-notes-disclaimer-title">
-          <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 偵辦警語
-        </p>
-        <p>以下內容<strong>大部分為 AI
-            整理</strong>；在本人複習驗證之前，<strong>正確性不予保證</strong>。請以偵探之眼謹慎偵查、交叉比對，勿將本筆記直接當成定案證據。符號條目若已親自確認，右上角會加蓋藍色矩形章「<strong>鑑識成功</strong>」。
-        </p>
-      </aside>
       <p class="conan-notes-intro">在 PHP 與 SQL
         的世界裡，這些標點符號就是我們偵辦案件時的「核心密碼與破案規則」。在後端主機執行時，哪怕只是解錯一個符號或漏掉一條線索，整個系統就會直接發出致命警報（Fatal Error），導致破案失敗。</p>
       <p class="conan-notes-intro">為了不讓主機發出錯誤警報，我們必須將 these 關鍵符號分成「PHP 偵辦組」與「SQL 資料庫組」兩大陣營，徹底釐清它們的唯一專門用途：</p>
@@ -210,9 +202,12 @@
               <p><strong>鑑識報告：</strong>在 PHP 裡，點號是用來把兩個字串（或是字串與變數）硬生生串在一起的專屬膠帶。</p>
               <p class="conan-notes-keyboard"><strong>鍵位指法：</strong>右 無名指 下滑 1</p>
             </li>
-          </ol>
-          <ol class="conan-notes-list conan-notes-list--pending">
-            <li class="conan-notes-item">
+            <li class="conan-notes-item conan-notes-item--ok">
+              <span class="conan-notes-stamp" aria-label="鑑識成功，已確認">
+                <span class="conan-notes-stamp-plate">
+                  <span class="conan-notes-stamp-text">鑑識成功</span>
+                </span>
+              </span>
               <p class="conan-notes-symbol"><code>=</code>等號</p>
               <p><strong>唯一專門用途：</strong>賦值運算子（Assignment）。</p>
               <p><strong>鑑識報告：</strong>在 PHP 裡面，這不是數學的等於！它是「把右邊的線索塞進左邊箱子」的動作。例如
@@ -318,9 +313,12 @@
               <p><strong>鑑識報告：</strong>在 SQL 裡，點號的作用是「從屬關係」，用來精準指定 <code>`表名`.`欄位名`</code>，明確指出這個線索是屬於哪一個檔案夾的。</p>
               <p class="conan-notes-keyboard"><strong>鍵位指法：</strong>右手 無名指 下1</p>
             </li>
-          </ol>
-          <ol class="conan-notes-list conan-notes-list--pending">
-            <li class="conan-notes-item">
+            <li class="conan-notes-item conan-notes-item--ok">
+              <span class="conan-notes-stamp" aria-label="鑑識成功，已確認">
+                <span class="conan-notes-stamp-plate">
+                  <span class="conan-notes-stamp-text">鑑識成功</span>
+                </span>
+              </span>
               <p class="conan-notes-symbol"><code>*</code>星號 / All</p>
               <p><strong>唯一專門用途：</strong>選擇所有的資料直欄。</p>
               <p><strong>鑑識報告：</strong>這是 SQL 偵辦時的萬能搜索令。當你寫下 <code>SELECT *</code>

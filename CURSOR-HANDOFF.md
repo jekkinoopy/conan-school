@@ -46,6 +46,7 @@ php -S localhost:8080
 - 自 WebDev-Notes 獨立；帶入可攜協作規範（`.cursor/rules`、`CURSOR-HANDOFF`）。
 - 邊界：學習專案不代寫練習程式；改動只限點名檔；樣式 class + `include` 共用、單頁覆寫不改 `Conan.css`；規範文檔採**迭代改寫**、勿文末堆疊重複章節。
 - `repo-workflow.mdc`「Git 還原」：補「上一個動作」誤判教訓（發音台曾一次退到 `f5f29a8`）；單檔預設 `HEAD~1`、跨段須列 SHA 請使用者選。
+- 辦案筆記 `05-WHERE帳密字串拆解.html`：登入 WHERE 片段六零件鍵位拆解；目錄與 `CHAIN` 已同步。
 - `git-commit.mdc`：明訂**改檔必附 commit 指令**（結尾、漏附視為違規）；仍不代為執行 commit。
 - 學員管理練習檔移至 `members/`；全站連結與筆記內路徑改為 `members/…`；全站主選單統一；頁尾僅外部練習專區＋柯南聯絡資訊。
 

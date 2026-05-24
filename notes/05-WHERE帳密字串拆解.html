@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>05 WHERE 帳密字串拆解｜辦案筆記｜米花町偵探學園</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="../Conan.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body class="conan-school">
+  <header class="conan-topbar">
+    <a class="conan-logo" href="../index.html">米花町偵探學園</a>
+    <nav class="conan-nav" aria-label="主選單">
+      <a href="../members/index.html">學員管理專區</a>
+      <a href="index.html">辦案筆記</a>
+      <a href="../pronounce-desk.html">發音偵訊台</a>
+      <a href="../index.html#news">事件簿</a>
+      <a class="conan-nav-peer" href="https://jekkinoopy.github.io/WebDev-Notes/courses/07-projects/practice/crayon/index.html">春日部體重管理之壘</a>
+    </nav>
+    <div class="conan-auth">
+      <a href="../members/03-login.php" class="conan-btn conan-btn-login">登入</a>
+      <a href="../members/01-register.html" class="conan-btn conan-btn-register">註冊</a>
+    </div>
+  </header>
+
+  <main class="conan-notes-main" id="top">
+    <a class="conan-back-link" href="index.html"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> 辦案筆記目錄</a>
+    <a class="conan-back-link conan-back-link-secondary" href="../index.html"><i class="fa-solid fa-house"
+        aria-hidden="true"></i> 返回偵辦室</a>
+    <article class="conan-notes-dossier">
+      <p class="conan-form-label"><i class="fa-solid fa-folder-open" aria-hidden="true"></i> 偵探編號 05</p>
+      <h1>WHERE 帳密字串：六零件鍵位拆解</h1>
+      <aside class="conan-notes-disclaimer" aria-labelledby="notes-disclaimer-title">
+        <p id="notes-disclaimer-title" class="conan-notes-disclaimer-title">
+          <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 偵辦警語
+        </p>
+        <p>以下內容<strong>大部分為 AI
+            整理</strong>；在本人複習驗證之前，<strong>正確性不予保證</strong>。請以偵探之眼謹慎偵查、交叉比對，勿將本筆記直接當成定案證據。</p>
+      </aside>
+
+      <p class="conan-notes-intro">接續 <a href="03-後端核心動作鑑識.html">03 後端核心動作鑑識</a> 登入用的
+        <code>WHERE</code> 片段。本篇<strong>不跳步</strong>：從最左到最右，六個零件各說明<strong>按哪顆鍵</strong>與<strong>為什麼要敲</strong>。符號總表見 <a href="01-標點符號.html">01 標點符號</a>。</p>
+
+      <div class="conan-notes-code">
+        <p class="conan-notes-code-label"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i> 案發現場（登入 SQL 其中一段）</p>
+        <pre class="conan-notes-code-block"><code>`account`='{$_POST['account']}'</code></pre>
+      </div>
+
+      <section class="conan-notes-faction" aria-labelledby="six-parts-title">
+        <h2 id="six-parts-title" class="conan-notes-faction-title">
+          <i class="fa-solid fa-keyboard" aria-hidden="true"></i> 由左而右：六個零件
+        </h2>
+
+        <div class="conan-notes-list-wrap">
+          <ol class="conan-notes-list conan-notes-list--pending">
+            <li class="conan-notes-item">
+              <p class="conan-notes-symbol">① <code>`account`</code>（反單引號組）</p>
+              <p class="conan-notes-keyboard"><strong>按鍵：</strong>左手小指敲鍵盤最左上角（<code>~</code> 下面那顆）。</p>
+              <p><strong>意義：</strong><strong>SQL 的地盤規定</strong>。寫到資料庫裡的「資料表名」或「欄位名」，一律用反單引號包起來，告訴資料庫：這是指定的格子名稱。</p>
+            </li>
+            <li class="conan-notes-item">
+              <p class="conan-notes-symbol">② <code>=</code>（等於）</p>
+              <p class="conan-notes-keyboard"><strong>按鍵：</strong>右手小指敲右上角的 <code>=</code>。</p>
+              <p><strong>意義：</strong>比對、連連看。讓左邊的欄位「等於」右邊送進來的內容。</p>
+            </li>
+            <li class="conan-notes-item">
+              <p class="conan-notes-symbol">③ <code>' '</code>（外層單引號組）</p>
+              <p class="conan-notes-keyboard"><strong>按鍵：</strong>右手小指敲 <code>L</code> 右邊第二顆（單引號）。</p>
+              <p><strong>意義：</strong><strong>SQL 的文字規定</strong>。比對內容是字串時，左右必須用單引號夾住；沒加，資料庫會當成數字或指令而報錯。</p>
+            </li>
+            <li class="conan-notes-item">
+              <p class="conan-notes-symbol">④ <code>{ }</code>（大括號組）</p>
+              <p class="conan-notes-keyboard"><strong>按鍵：</strong>右手小指 Shift + <code>P</code> 右邊兩顆（<code>{</code>、<code>}</code>）。</p>
+              <p><strong>意義：</strong><strong>PHP 的變數規定</strong>。整段 SQL 包在雙引號字串 <code>"$sql=..."</code> 裡時，若要在字串內直接塞帶中括號的變數（<code>$_POST[...]</code>），必須用大括號包住，PHP 才會當成完整變數、不會解讀錯誤。</p>
+            </li>
+            <li class="conan-notes-item">
+              <p class="conan-notes-symbol">⑤ <code>$_POST</code></p>
+              <p class="conan-notes-keyboard"><strong>按鍵：</strong><code>$</code>（右手 中指 上2）+ 大寫 <code>_POST</code>（底線：右手 小指 Shift + 中指 上2）。</p>
+              <p><strong>意義：</strong>PHP 內建陣列，接收上一頁表單 POST 送來的整包資料（例：<a href="../members/03-login.php"><code>members/03-login.php</code></a> → 登入 API）。</p>
+            </li>
+            <li class="conan-notes-item">
+              <p class="conan-notes-symbol">⑥ <code>['account']</code>（中括號 + 單引號）</p>
+              <p class="conan-notes-keyboard"><strong>按鍵：</strong>先敲中括號 <code>[ ]</code>（右手 小指 右1 與 右2），裡面再敲單引號 <code>'account'</code>（右手 小指 右1）。</p>
+              <p><strong>意義：</strong><strong>PHP 陣列指名</strong>。POST 包裹裡有多個欄位（帳號、密碼等），<code>['account']</code> 表示取出 name 為 <code>account</code> 的那一欄輸入值。</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="conan-notes-faction" aria-labelledby="chain-title">
+        <h2 id="chain-title" class="conan-notes-faction-title">
+          <i class="fa-solid fa-link" aria-hidden="true"></i> 從左到右：打字順序串接
+        </h2>
+        <ol class="conan-notes-bullets">
+          <li>反單引號標示資料庫欄位 <code>`account`</code></li>
+          <li><code>=</code> 準備比對</li>
+          <li>單引號 <code>' '</code> 為字串搭外框</li>
+          <li>大括號 <code>{ }</code> 保護字串內的複雜變數</li>
+          <li><code>$_POST</code> 接表單整包</li>
+          <li><code>['account']</code> 取出帳號欄位的值</li>
+        </ol>
+        <p class="conan-notes-legend" role="note">
+          <i class="fa-solid fa-lightbulb" aria-hidden="true"></i> 密碼欄位同理：<code>`password`='{$_POST['password']}'</code>，僅最後的鍵名改成 <code>password</code>。
+        </p>
+      </section>
+
+      <div class="conan-notes-nav-wrap">
+        <div id="conan-notes-nav-root" data-note-id="05-WHERE帳密字串拆解"></div>
+      </div>
+    </article>
+  </main>
+
+  <script src="../conan-notes-nav.js"></script>
+  <footer id="contact" class="conan-site-footer">
+    <h2 class="conan-footer-title">米花町偵探學園</h2>
+    <nav class="conan-footer-nav" aria-label="其他練習專區">
+      <a href="https://jekkinoopy.github.io/WebDev-Notes/courses/07-projects/practice/crayon/index.html" target="_blank" rel="noopener noreferrer">春日部保健室</a>
+      <a href="https://jekkinoopy.github.io/WebDev-Notes/courses/07-projects/practice/index.html" target="_blank" rel="noopener noreferrer">努比全端筆記・實作專區</a>
+    </nav>
+    <ul class="conan-contact-list">
+      <li>
+        <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+        毛利偵探事務所 · 東京都米花町
+      </li>
+      <li>
+        <i class="fa-solid fa-phone" aria-hidden="true"></i>
+        03-1234-5678（事務所代表線・設定虛構）
+      </li>
+      <li>
+        <i class="fa-solid fa-user-tie" aria-hidden="true"></i>
+        所長：毛利小五郎（沉睡中亦受理委託）
+      </li>
+    </ul>
+    <div class="conan-footer-bottom">
+      <p class="conan-copy">&copy; 2026 努比的全端筆記</p>
+    </div>
+  </footer>
+</body>
+
+</html>

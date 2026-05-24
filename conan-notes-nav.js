@@ -6,6 +6,7 @@
     { id: "02-PHP與SQL", href: "02-PHP與SQL.html", title: "PHP 與 SQL" },
     { id: "03-後端核心動作鑑識", href: "03-後端核心動作鑑識.html", title: "後端核心動作鑑識" },
     { id: "04-後台動態插頁與inc", href: "04-後台動態插頁與inc.html", title: "後台動態插頁與 ?inc" },
+    { id: "05-WHERE帳密字串拆解", href: "05-WHERE帳密字串拆解.html", title: "WHERE 帳密六零件" },
   ];
 
   var INDEX_HREF = "index.html";

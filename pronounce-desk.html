@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>英文發音偵訊台｜米花町偵探學園</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="Conan.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <style>
+    /* 本頁專用：雙欄發音工作台（不寫入 Conan.css） */
+    .conan-pronounce-layout {
+      max-width: var(--conan-content-max);
+      margin: 0 auto;
+      padding: 1.25rem 1.25rem 2rem;
+    }
+
+    .conan-pronounce-shell {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      min-height: min(72vh, 720px);
+      background: var(--conan-card-bg);
+      border: 1px solid var(--conan-border);
+      border-left: 4px solid var(--conan-navy);
+      border-radius: 4px;
+      box-shadow: 0 4px 20px var(--conan-shadow);
+      overflow: hidden;
+    }
+
+    @media (min-width: 768px) {
+      .conan-pronounce-shell {
+        flex-direction: row;
+        min-height: min(78vh, 760px);
+      }
+    }
+
+    .conan-pronounce-panel {
+      flex-shrink: 0;
+      padding: 1.25rem 1.25rem 1.5rem;
+      background: var(--conan-bg);
+      border-bottom: 1px solid var(--conan-border);
+    }
+
+    @media (min-width: 768px) {
+      .conan-pronounce-panel {
+        width: 300px;
+        border-bottom: none;
+        border-right: 1px solid var(--conan-border);
+      }
+    }
+
+    .conan-pronounce-intro {
+      margin: 0 0 1.25rem;
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: var(--conan-muted);
+      font-style: italic;
+    }
+
+    .conan-pronounce-form {
+      margin-bottom: 1.25rem;
+    }
+
+    .conan-pronounce-form label {
+      display: block;
+      margin-bottom: 0.35rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--conan-navy);
+    }
+
+    .conan-pronounce-form input {
+      width: 100%;
+      padding: 0.55rem 0.75rem;
+      border: 1px solid var(--conan-border);
+      border-radius: 4px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      background: var(--conan-card-bg);
+      color: var(--conan-dark);
+    }
+
+    .conan-pronounce-form input:focus {
+      outline: none;
+      border-color: var(--conan-navy);
+      box-shadow: 0 0 0 2px rgba(42, 67, 101, 0.18);
+    }
+
+    .conan-pronounce-form button[type="submit"] {
+      width: 100%;
+      margin-top: 0.65rem;
+      padding: 0.65rem 1rem;
+      border: 1px solid var(--conan-crimson);
+      border-radius: 4px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      font-family: inherit;
+      color: #fff;
+      background: var(--conan-crimson);
+      cursor: pointer;
+    }
+
+    .conan-pronounce-form button[type="submit"]:hover {
+      background: #b91c1c;
+      border-color: #b91c1c;
+    }
+
+    .conan-pronounce-hint {
+      min-height: 1.25rem;
+      margin: 0.5rem 0 0;
+      font-size: 0.82rem;
+      color: var(--conan-crimson);
+    }
+
+    .conan-pronounce-hint:empty {
+      display: none;
+    }
+
+    .conan-pronounce-dict-label {
+      margin: 0 0 0.5rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--conan-muted);
+    }
+
+    .conan-pronounce-dict-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .conan-pronounce-dict-links a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      padding: 0.55rem 0.75rem;
+      font-size: 0.86rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--conan-dark);
+      background: var(--conan-card-bg);
+      border: 1px solid var(--conan-border);
+      border-radius: 4px;
+      transition: border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .conan-pronounce-dict-links a:hover {
+      border-color: var(--conan-crimson);
+      color: var(--conan-crimson);
+    }
+
+    .conan-pronounce-dict-links a[aria-disabled="true"] {
+      opacity: 0.45;
+      pointer-events: none;
+      cursor: not-allowed;
+    }
+
+    .conan-pronounce-tag {
+      flex-shrink: 0;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.12rem 0.4rem;
+      border-radius: 3px;
+      color: var(--conan-navy);
+      background: color-mix(in srgb, var(--conan-navy) 10%, #fff);
+    }
+
+    .conan-pronounce-stage {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 280px;
+      background: var(--conan-dark);
+    }
+
+    .conan-pronounce-stage-bar {
+      padding: 0.65rem 1rem;
+      font-size: 0.86rem;
+      color: rgba(255, 255, 255, 0.85);
+      background: color-mix(in srgb, var(--conan-dark) 92%, #000);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .conan-pronounce-stage-bar strong {
+      color: #fca5a5;
+      font-weight: 700;
+    }
+
+    .conan-pronounce-frame-wrap {
+      flex: 1;
+      position: relative;
+      background: #111827;
+    }
+
+    .conan-pronounce-frame-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .conan-pronounce-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      text-align: center;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    .conan-pronounce-placeholder[hidden] {
+      display: none;
+    }
+  </style>
+</head>
+
+<body class="conan-school">
+  <header class="conan-topbar">
+    <a class="conan-logo" href="index.html">米花町偵探學園</a>
+    <nav class="conan-nav" aria-label="主選單">
+      <a href="index.html#top">關於我們</a>
+      <a href="index.html#features">辦案機能</a>
+      <a href="index.html#news">事件簿</a>
+      <a href="case-notes.html">辦案筆記</a>
+      <a href="index.html#contact">聯絡方式</a>
+    </nav>
+    <div class="conan-auth">
+      <a href="03-login.php" class="conan-btn conan-btn-login">登入</a>
+      <a href="01-register.html" class="conan-btn conan-btn-register">註冊</a>
+    </div>
+  </header>
+
+  <main class="conan-pronounce-layout" id="top">
+    <a class="conan-back-link" href="index.html"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> 返回偵辦室</a>
+
+    <article class="conan-form-card" style="margin-bottom: 1rem; border-left-color: var(--conan-navy);">
+      <p class="conan-form-label"><i class="fa-solid fa-headphones" aria-hidden="true"></i> 輔助工具</p>
+      <h1>英文發音偵訊台</h1>
+      <p class="conan-form-sub">練習 PHP／SQL 時，變數與關鍵字念不準？輸入一次英文線索，右側聯動翻譯發音，左側直達權威字典比對美音。</p>
+    </article>
+
+    <div class="conan-pronounce-shell">
+      <aside class="conan-pronounce-panel" aria-label="搜尋與字典捷徑">
+        <form class="conan-pronounce-form" id="pronounceForm">
+          <label for="keywordInput"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i> 關鍵字（英文）</label>
+          <input type="text" id="keywordInput" name="q" placeholder="例如 Data、execute、members"
+            autocomplete="off" spellcheck="false" autofocus />
+          <button type="submit"><i class="fa-solid fa-bullhorn" aria-hidden="true"></i> 同步更新發音區</button>
+          <p class="conan-pronounce-hint" id="pronounceHint" role="status" aria-live="polite"></p>
+        </form>
+
+        <p class="conan-pronounce-dict-label">權威字典・新分頁開啟</p>
+        <ul class="conan-pronounce-dict-links">
+          <li>
+            <a id="lnkCambridge" href="#" target="_blank" rel="noopener noreferrer" aria-disabled="true">
+              <span>Cambridge 劍橋</span>
+              <span class="conan-pronounce-tag">US 喇叭</span>
+            </a>
+          </li>
+          <li>
+            <a id="lnkMerriam" href="#" target="_blank" rel="noopener noreferrer" aria-disabled="true">
+              <span>Merriam 韋氏</span>
+              <span class="conan-pronounce-tag">美音</span>
+            </a>
+          </li>
+          <li>
+            <a id="lnkOxford" href="#" target="_blank" rel="noopener noreferrer" aria-disabled="true">
+              <span>Oxford 牛津</span>
+              <span class="conan-pronounce-tag">對照</span>
+            </a>
+          </li>
+        </ul>
+      </aside>
+
+      <section class="conan-pronounce-stage" aria-label="內嵌翻譯發音">
+        <div class="conan-pronounce-stage-bar">
+          當前線索：<strong id="displayWord">尚未輸入</strong>
+          <span aria-hidden="true"> · </span>
+          下方為 Google 翻譯（可點喇叭聽發音）
+        </div>
+        <div class="conan-pronounce-frame-wrap">
+          <p class="conan-pronounce-placeholder" id="framePlaceholder">
+            輸入英文單字或程式關鍵字後，按「同步更新發音區」或 Enter。
+          </p>
+          <iframe id="googleTranslateFrame" title="Google 翻譯：英文發音與中文對照" src="about:blank"
+            hidden></iframe>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="conan-site-footer">
+    <h2 class="conan-footer-title">米花町偵探學園</h2>
+    <nav class="conan-footer-nav" aria-label="頁尾連結">
+      <a href="01-register.html">註冊練習</a>
+      <a href="03-login.php">登入練習</a>
+      <a href="case-notes.html">辦案筆記</a>
+      <a href="pronounce-desk.html" aria-current="page">發音偵訊台</a>
+    </nav>
+    <div class="conan-footer-bottom">
+      <p class="conan-copy">&copy; 2026 努比的全端筆記 · 真相只有一個</p>
+      <p class="conan-footer-meta">
+        <a href="index.html">回到偵辦室</a>
+        <span aria-hidden="true">|</span>
+        <a href="#top">回到頂部</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var form = document.getElementById("pronounceForm");
+      var input = document.getElementById("keywordInput");
+      var hint = document.getElementById("pronounceHint");
+      var displayWord = document.getElementById("displayWord");
+      var frame = document.getElementById("googleTranslateFrame");
+      var placeholder = document.getElementById("framePlaceholder");
+      var dictLinks = [
+        { el: document.getElementById("lnkCambridge"), build: function (w) { return "https://dictionary.cambridge.org/dictionary/english/" + encodeURIComponent(w); } },
+        { el: document.getElementById("lnkMerriam"), build: function (w) { return "https://www.merriam-webster.com/dictionary/" + encodeURIComponent(w); } },
+        { el: document.getElementById("lnkOxford"), build: function (w) { return "https://www.oxfordlearnersdictionaries.com/definition/english/" + encodeURIComponent(w); } },
+      ];
+
+      function setDictLinks(word, enabled) {
+        dictLinks.forEach(function (item) {
+          if (enabled) {
+            item.el.href = item.build(word);
+            item.el.removeAttribute("aria-disabled");
+          } else {
+            item.el.href = "#";
+            item.el.setAttribute("aria-disabled", "true");
+          }
+        });
+      }
+
+      function executeSearch() {
+        var word = input.value.trim();
+        hint.textContent = "";
+
+        if (!word) {
+          hint.textContent = "請先輸入英文關鍵字。";
+          input.focus();
+          return;
+        }
+
+        displayWord.textContent = word;
+        placeholder.hidden = true;
+        frame.hidden = false;
+        frame.src =
+          "https://translate.google.com/?sl=en&tl=zh-TW&text=" +
+          encodeURIComponent(word) +
+          "&op=translate";
+
+        setDictLinks(word, true);
+      }
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        executeSearch();
+      });
+
+      setDictLinks("", false);
+    })();
+  </script>
+</body>
+
+</html>

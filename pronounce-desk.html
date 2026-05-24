@@ -210,35 +210,6 @@
       display: none;
     }
 
-    .conan-pronounce-dict-header__name {
-      flex: 1 1 auto;
-      min-width: 0;
-    }
-
-    .conan-pronounce-embed-trigger {
-      flex: 1 1 auto;
-      min-width: 8rem;
-      margin: 0;
-      padding: 0.28rem 0.65rem;
-      border: 2px solid rgba(255, 255, 255, 0.85);
-      border-radius: 4px;
-      font-size: 0.82rem;
-      font-weight: 700;
-      font-family: inherit;
-      color: #fff;
-      background: rgba(255, 255, 255, 0.18);
-      cursor: pointer;
-      white-space: nowrap;
-    }
-
-    .conan-pronounce-embed-trigger:hover {
-      background: rgba(255, 255, 255, 0.32);
-    }
-
-    .conan-pronounce-embed-trigger[hidden] {
-      display: none;
-    }
-
     .conan-pronounce-dict-box--link-only .conan-pronounce-frame-wrap,
     .conan-pronounce-dict-box:not(.conan-pronounce-dict-box--embed-active) .conan-pronounce-frame-wrap {
       display: none;
@@ -290,12 +261,12 @@
       <article class="conan-pronounce-guide-card">
         <p class="conan-form-label"><i class="fa-solid fa-headphones" aria-hidden="true"></i> 輔助工具 · Dev Dict Workspace</p>
         <h1>英文發音偵訊台</h1>
-        <p class="conan-form-sub">輸入單字並確認後，會出現 <strong>▶ 點此內嵌</strong>；按一下即在下方顯示。另開分頁用右側 ↗。不會一次載入全部。</p>
+        <p class="conan-form-sub">輸入單字並按「確認單字」後，<strong>Google、Bing、Merriam、VoiceTube 會自動內嵌</strong>在下方；<strong>MDN、W3Schools</strong> 請點 ↗ 另開視窗。</p>
         <h2 id="pronounce-guide-title">使用說明</h2>
         <ul class="conan-pronounce-guide-list">
-          <li>輸入單字（如 <code>data</code>）→「確認單字」→ 在要的來源列按 <strong>▶ 點此內嵌</strong>。</li>
-          <li><strong>MDN</strong>／<strong>W3Schools</strong>：沒有內嵌鈕，只有 ↗ 另開視窗。</li>
-          <li><strong>Google</strong>、<strong>Bing</strong>、<strong>Merriam</strong>、<strong>VoiceTube</strong>：有 <strong>▶ 點此內嵌</strong> 與 ↗。</li>
+          <li>輸入單字（如 <code>data</code>）→ 按「確認單字」即可。</li>
+          <li>可內嵌的四站會<strong>立刻</strong>載入，不用再點第二下。</li>
+          <li>需要全螢幕或該站擋內嵌時，用列標題右側 ↗。</li>
         </ul>
       </article>
     </section>
@@ -333,8 +304,7 @@
       </section>
       <section class="conan-pronounce-dict-box" data-source="google">
         <div class="conan-pronounce-dict-header conan-pronounce-dict-header--embed conan-pronounce-dict-header--with-link">
-          <span class="conan-pronounce-dict-header__name">Google 搜尋（單字 + 意思）</span>
-          <button type="button" class="conan-pronounce-embed-trigger" hidden>▶ 點此內嵌</button>
+          <span>Google 搜尋（單字 + 意思）</span>
           <div class="conan-pronounce-dict-header__actions">
             <a class="conan-pronounce-external-link" href="#" target="_blank" rel="noopener noreferrer" hidden>↗ 另開視窗</a>
           </div>
@@ -345,8 +315,7 @@
       </section>
       <section class="conan-pronounce-dict-box" data-source="bing">
         <div class="conan-pronounce-dict-header conan-pronounce-dict-header--embed conan-pronounce-dict-header--with-link">
-          <span class="conan-pronounce-dict-header__name">Bing 翻譯</span>
-          <button type="button" class="conan-pronounce-embed-trigger" hidden>▶ 點此內嵌</button>
+          <span>Bing 翻譯</span>
           <div class="conan-pronounce-dict-header__actions">
             <a class="conan-pronounce-external-link" href="#" target="_blank" rel="noopener noreferrer" hidden>↗ 另開視窗</a>
           </div>
@@ -357,8 +326,7 @@
       </section>
       <section class="conan-pronounce-dict-box" data-source="merriam">
         <div class="conan-pronounce-dict-header conan-pronounce-dict-header--embed conan-pronounce-dict-header--with-link">
-          <span class="conan-pronounce-dict-header__name">Merriam-Webster 韋氏詞典</span>
-          <button type="button" class="conan-pronounce-embed-trigger" hidden>▶ 點此內嵌</button>
+          <span>Merriam-Webster 韋氏詞典</span>
           <div class="conan-pronounce-dict-header__actions">
             <a class="conan-pronounce-external-link" href="#" target="_blank" rel="noopener noreferrer" hidden>↗ 另開視窗</a>
           </div>
@@ -369,8 +337,7 @@
       </section>
       <section class="conan-pronounce-dict-box" data-source="voicetube">
         <div class="conan-pronounce-dict-header conan-pronounce-dict-header--embed conan-pronounce-dict-header--with-link">
-          <span class="conan-pronounce-dict-header__name">VoiceTube 雙語字典</span>
-          <button type="button" class="conan-pronounce-embed-trigger" hidden>▶ 點此內嵌</button>
+          <span>VoiceTube 雙語字典</span>
           <div class="conan-pronounce-dict-header__actions">
             <a class="conan-pronounce-external-link" href="#" target="_blank" rel="noopener noreferrer" hidden>↗ 另開視窗</a>
           </div>
@@ -467,7 +434,7 @@
         var key = section.getAttribute("data-source");
         var url = sourceUrls[key](word);
         var link = section.querySelector(".conan-pronounce-external-link");
-        var embedTrigger = section.querySelector(".conan-pronounce-embed-trigger");
+        var iframe = section.querySelector("iframe");
         var label = sourceLabels[key];
 
         link.href = url;
@@ -475,9 +442,9 @@
         link.textContent = "↗ 另開視窗";
         link.setAttribute("aria-label", "在新分頁開啟 " + label + "：" + word);
 
-        if (embedTrigger) {
-          embedTrigger.hidden = false;
-          embedTrigger.setAttribute("aria-label", "內嵌「" + word + "」的 " + label);
+        if (iframe) {
+          section.classList.add("conan-pronounce-dict-box--embed-active");
+          iframe.src = url;
         }
       }
 
@@ -486,43 +453,8 @@
         document.querySelectorAll(".conan-pronounce-source-stack [data-source]").forEach(function (section) {
           armRow(section, word);
         });
-        hint.textContent = "已確認「" + word + "」。請按各列 ▶ 點此內嵌（MDN／W3Schools 請用 ↗）。";
+        hint.textContent = "已確認「" + word + "」。四站已自動內嵌；MDN／W3Schools 請點 ↗。";
       }
-
-      function loadEmbed(section) {
-        var word = currentWord || getWord();
-        if (!word) {
-          return;
-        }
-        if (!currentWord) {
-          prepareAllRows(word);
-        }
-        var key = section.getAttribute("data-source");
-        var iframe = section.querySelector("iframe");
-        if (iframe) {
-          section.classList.add("conan-pronounce-dict-box--embed-active");
-          iframe.src = sourceUrls[key](word);
-        }
-        var label = sourceLabels[key];
-        hint.textContent = "已載入「" + word + "」的 " + label + " 內嵌。";
-      }
-
-      document.querySelectorAll(".conan-pronounce-embed-trigger").forEach(function (trigger) {
-        trigger.addEventListener("click", function () {
-          var section = trigger.closest("[data-source]");
-          if (!section) {
-            return;
-          }
-          var word = currentWord || getWord();
-          if (!word) {
-            return;
-          }
-          if (!currentWord) {
-            prepareAllRows(word);
-          }
-          loadEmbed(section);
-        });
-      });
 
       form.addEventListener("submit", function (e) {
         e.preventDefault();

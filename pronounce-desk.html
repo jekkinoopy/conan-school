@@ -282,8 +282,8 @@
           <li>會<strong>同步聯動</strong>載入同一關鍵字，不必分開開多個分頁。</li>
           <li>各格用途（依畫面由上而下、由左而右的順序）：
             <ul class="conan-pronounce-guide-sources">
-              <li><strong>MDN 列</strong>：MDN 官方繁中搜尋；無法內嵌時請點 <strong>↗</strong>。</li>
-              <li><strong>W3Schools 列</strong>：W3Schools 官方標籤搜尋；請點 <strong>↗</strong>。</li>
+              <li><strong>MDN 列</strong>：MDN 官方繁中搜尋；搜尋後點 <strong>↗ 另開視窗 (單字)</strong>。</li>
+              <li><strong>W3Schools 列</strong>：W3Schools 官方搜尋；搜尋後點 <strong>↗ 另開視窗 (單字)</strong>。</li>
               <li><strong>第一格 Google 搜尋</strong>：以「單字 + 意思」查繁中說明（含發音相關結果）。</li>
               <li><strong>第二格 Bing 翻譯</strong>：繁中翻譯與語音。</li>
               <li><strong>第三格 Merriam-Webster</strong>：韋氏詞典，可聽美音。</li>
@@ -313,16 +313,14 @@
       <section class="conan-pronounce-dict-box" aria-label="MDN 程式術語庫">
         <div class="conan-pronounce-dict-header conan-pronounce-dict-header--external conan-pronounce-dict-header--with-link">
           MDN 程式術語庫
-          <a id="mdnLink" class="conan-pronounce-external-link" href="#" target="_blank" rel="noopener noreferrer" aria-label="在新分頁開啟 MDN 搜尋" hidden>↗</a>
+          <a id="mdnLink" class="conan-pronounce-external-link" href="#" target="_blank" rel="noopener noreferrer" hidden></a>
         </div>
-        <iframe id="frameMDN" title="MDN 程式術語庫" hidden tabindex="-1"></iframe>
       </section>
       <section class="conan-pronounce-dict-box" aria-label="W3Schools 語法庫">
         <div class="conan-pronounce-dict-header conan-pronounce-dict-header--external conan-pronounce-dict-header--with-link">
           W3Schools 語法庫
-          <a id="w3sLink" class="conan-pronounce-external-link" href="#" target="_blank" rel="noopener noreferrer" aria-label="在新分頁開啟 W3Schools 搜尋" hidden>↗</a>
+          <a id="w3sLink" class="conan-pronounce-external-link" href="#" target="_blank" rel="noopener noreferrer" hidden></a>
         </div>
-        <iframe id="frameW3S" title="W3Schools 語法庫" hidden tabindex="-1"></iframe>
       </section>
     </div>
 
@@ -396,21 +394,26 @@
           return;
         }
 
+        // 1. MDN 區塊：指向官方繁中標準搜尋
         var mdnUrl = "https://developer.mozilla.org/zh-TW/search?q=" + encodeURIComponent(word);
-        document.getElementById("frameMDN").src = mdnUrl;
         var mdnLink = document.getElementById("mdnLink");
         mdnLink.href = mdnUrl;
         mdnLink.hidden = false;
         mdnLink.style.display = "inline";
+        mdnLink.textContent = "↗ 另開視窗 (" + word + ")";
+        mdnLink.setAttribute("aria-label", "在新分頁開啟 MDN 搜尋：" + word);
 
+        // 2. w3schools 區塊：官方標準搜尋直達路徑
         var w3sUrl =
-          "https://www.w3schools.com/tags/ref_search.asp?search=" + encodeURIComponent(word);
-        document.getElementById("frameW3S").src = w3sUrl;
+          "https://www.w3schools.com/search/search.asp?search=" + encodeURIComponent(word);
         var w3sLink = document.getElementById("w3sLink");
         w3sLink.href = w3sUrl;
         w3sLink.hidden = false;
         w3sLink.style.display = "inline";
+        w3sLink.textContent = "↗ 另開視窗 (" + word + ")";
+        w3sLink.setAttribute("aria-label", "在新分頁開啟 W3Schools 搜尋：" + word);
 
+        // 3. 下方四象限內嵌聯動
         document.getElementById("frameGoogleDict").src =
           "https://www.google.com/search?q=" + encodeURIComponent(word) + "+意思&hl=zh-TW&lr=lang_zh-TW&igu=1";
         document.getElementById("frameBing").src =

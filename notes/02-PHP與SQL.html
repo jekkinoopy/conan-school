@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="zh-TW">
 
 <head>
@@ -29,19 +29,12 @@
   </header>
 
   <main class="conan-notes-main" id="top">
-    <a class="conan-back-link" href="index.html"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> 辦案筆記目錄</a>
-    <a class="conan-back-link conan-back-link-secondary" href="../index.html"><i class="fa-solid fa-house"
-        aria-hidden="true"></i> 返回偵辦室</a>
+    <div class="conan-notes-nav-wrap conan-notes-nav-wrap--top">
+      <div class="conan-notes-nav-root" data-note-id="02-PHP與SQL"></div>
+    </div>
     <article class="conan-notes-dossier">
       <p class="conan-form-label"><i class="fa-solid fa-folder-open" aria-hidden="true"></i> 偵探編號 02</p>
       <h1>誰是 PHP？誰是 SQL？</h1>
-      <aside class="conan-notes-disclaimer" aria-labelledby="notes-disclaimer-title">
-        <p id="notes-disclaimer-title" class="conan-notes-disclaimer-title">
-          <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 偵辦警語
-        </p>
-        <p>以下內容<strong>大部分為 AI
-            整理</strong>；在本人複習驗證之前，<strong>正確性不予保證</strong>。請以偵探之眼謹慎偵查、交叉比對，勿將本筆記直接當成定案證據。</p>
-      </aside>
       <p class="conan-notes-intro">在 <code>members/02-api_register.php</code> 這類註冊 API 裡，同一行畫面常同時出現
         <code>$pdo</code>、<code>-&gt;exec()</code> 與夾在括號裡的 <code>$sql</code>。乍看全寫在一起，其實是兩種身分：<strong>PHP
           負責動手</strong>，<strong>SQL 是被打包送出的指令</strong>。</p>
@@ -52,8 +45,13 @@
         </h2>
 
         <div class="conan-notes-list-wrap">
-          <ol class="conan-notes-list conan-notes-list--pending">
-            <li class="conan-notes-item">
+          <ol class="conan-notes-list conan-notes-list--reviewed">
+            <li class="conan-notes-item conan-notes-item--ok">
+              <span class="conan-notes-stamp" aria-label="鑑識成功，已確認">
+                <span class="conan-notes-stamp-plate">
+                  <span class="conan-notes-stamp-text">鑑識成功</span>
+                </span>
+              </span>
               <p class="conan-notes-symbol"><strong>1. 誰是 PHP？</strong>（執行者）</p>
               <p><strong>範圍：</strong><code>$pdo</code>、<code>-&gt;</code>、<code>exec( ... )</code> 還有結尾的分號
                 <code>;</code>。</p>
@@ -65,7 +63,12 @@
               </ul>
               <p><strong>職責：</strong>它是坐在電腦裡的「執行官」，負責發動命令。</p>
             </li>
-            <li class="conan-notes-item">
+            <li class="conan-notes-item conan-notes-item--ok">
+              <span class="conan-notes-stamp" aria-label="鑑識成功，已確認">
+                <span class="conan-notes-stamp-plate">
+                  <span class="conan-notes-stamp-text">鑑識成功</span>
+                </span>
+              </span>
               <p class="conan-notes-symbol"><strong>2. 誰是 SQL？</strong>（被執行的指令內容）</p>
               <p><strong>範圍：</strong>夾在括號肚子裡的 <code>$sql</code>。</p>
               <p><strong>怎麼認：</strong></p>
@@ -88,7 +91,7 @@
       </section>
 
       <div class="conan-notes-nav-wrap">
-        <div id="conan-notes-nav-root" data-note-id="02-PHP與SQL"></div>
+        <div class="conan-notes-nav-root" data-note-id="02-PHP與SQL"></div>
       </div>
     </article>
   </main>

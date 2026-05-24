@@ -28,9 +28,10 @@
   </header>
 
   <main class="conan-page-main">
-    <a class="conan-back-link" href="index.html"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> 學員管理專區</a>
-    <a class="conan-back-link conan-back-link-secondary" href="../index.html"><i class="fa-solid fa-house"
-        aria-hidden="true"></i> 返回偵辦室</a>
+    <nav class="conan-back-links" aria-label="返回導覽">
+      <a class="conan-back-link" href="index.html"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> 學員管理專區</a>
+      <a class="conan-back-link" href="../index.html"><i class="fa-solid fa-house" aria-hidden="true"></i> 返回偵辦室</a>
+    </nav>
     <article class="conan-form-card">
       <p class="conan-form-label"><i class="fa-solid fa-user-check" aria-hidden="true"></i> 會員登入</p>
       <p class="conan-form-sub">請出示帳號與密碼，接受偵辦室驗證。帳密不符者，恕不發放破案許可。</p>

@@ -58,7 +58,7 @@ alwaysApply: true
 | 目錄條目 | `notes/index.html` 的 `<ol class="conan-notes-index-list">` |
 | 上下則 | `conan-notes-nav.js` 的 `CHAIN` |
 
-- **新增**一則：三處都加；內頁要有 `#conan-notes-nav-root` + `data-note-id`（與 `CHAIN[].id` 一致）。
+- **新增**一則：三處都加；內頁要有**頁首、頁尾**各一組 `.conan-notes-nav-root` + `data-note-id`（與 `CHAIN[].id` 一致）；勿再用單獨「辦案筆記目錄」返回連結。
 - 目錄卡標題、`CHAIN[].title`、內頁 `<h1>` **必須同一套名稱**（勿目錄用簡稱、內頁用長標題）。
 - **刪除**一則：三處都刪。
 - **改目錄、頁尾、peer-nav、更名**後：用 `notes/*.html` 對照目錄與 `CHAIN`；禁止用舊版 `index.html` 覆寫而漏條目。

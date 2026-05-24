@@ -506,20 +506,34 @@
   padding: 2rem 1.25rem 2.5rem;
 }
 
+.conan-back-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.55rem;
+  width: fit-content;
+  max-width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.65rem 0.9rem;
+  background: color-mix(in srgb, var(--conan-navy) 5%, var(--conan-card-bg));
+  border: 1px solid var(--conan-border);
+  border-radius: 4px;
+}
+
+.conan-back-links .conan-back-link {
+  margin: 0;
+}
+
 .conan-back-link {
   display: flex;
   width: fit-content;
   align-items: center;
   gap: 0.35rem;
-  margin: 0 0 0.45rem;
+  margin: 0 0 1rem;
   font-size: 0.88rem;
   font-weight: 500;
   color: var(--conan-navy);
   text-decoration: none;
-}
-
-.conan-back-link:last-of-type {
-  margin-bottom: 1rem;
 }
 
 .conan-form-label .fa-solid,
@@ -1185,14 +1199,16 @@
   color: #bbb;
 }
 
-.conan-back-link-secondary {
-  margin-top: 0.15rem;
-}
-
-/* 辦案筆記內頁：上一則／下一則 */
+/* 辦案筆記內頁：上一則／下一則（頁首、頁尾） */
 .conan-notes-nav-wrap {
   margin-top: 1.75rem;
   padding-top: 0.25rem;
+}
+
+.conan-notes-nav-wrap--top {
+  margin-top: 0;
+  margin-bottom: 1.15rem;
+  padding-top: 0;
 }
 
 .conan-notes-nav {

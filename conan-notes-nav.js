@@ -1,4 +1,4 @@
-/** 辦案筆記內頁：上一則／下一則。`data-note-id` 對應 CHAIN 的 id（與檔名不含副檔名一致）。 */
+/** 辦案筆記內頁：上一則／下一則（頁首、頁尾各一組，內容相同）。`data-note-id` 對應 CHAIN 的 id。 */
 (function () {
   /** @type {{ id: string, href: string, title: string }[]} */
   var CHAIN = [
@@ -12,17 +12,11 @@
   var INDEX_HREF = "index.html";
   var SERIES = "[辦案筆記]";
 
-  document.addEventListener("DOMContentLoaded", function () {
-    var root = document.getElementById("conan-notes-nav-root");
-    if (!root) return;
-
-    var noteId = root.getAttribute("data-note-id");
-    if (!noteId) return;
-
+  function buildNavHtml(noteId) {
     var cur = CHAIN.findIndex(function (x) {
       return x.id === noteId;
     });
-    if (cur === -1) return;
+    if (cur === -1) return "";
 
     var parts = [];
     parts.push('<nav class="conan-notes-nav" aria-label="筆記導覽">');
@@ -70,6 +64,21 @@
     }
 
     parts.push("</nav>");
-    root.innerHTML = parts.join("");
+    return parts.join("");
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    var roots = document.querySelectorAll(".conan-notes-nav-root");
+    if (!roots.length) return;
+
+    var noteId = roots[0].getAttribute("data-note-id");
+    if (!noteId) return;
+
+    var html = buildNavHtml(noteId);
+    if (!html) return;
+
+    roots.forEach(function (root) {
+      root.innerHTML = html;
+    });
   });
 })();

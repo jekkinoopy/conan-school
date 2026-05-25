@@ -28,14 +28,6 @@
       border-radius: 6px;
     }
 
-    .conan-notes-compare caption {
-      caption-side: top;
-      padding: 0 0 0.55rem;
-      font-weight: 700;
-      text-align: left;
-      color: var(--conan-navy);
-    }
-
     .conan-notes-compare th,
     .conan-notes-compare td {
       padding: 0.65rem 0.75rem;
@@ -51,7 +43,7 @@
     }
 
     .conan-notes-compare thead th:first-child {
-      width: 6.5rem;
+      min-width: 7.5rem;
       text-align: left;
     }
 
@@ -60,6 +52,7 @@
       text-align: left;
       color: var(--conan-navy);
       background: var(--conan-bg);
+      white-space: nowrap;
     }
 
     .conan-notes-compare tbody td {
@@ -111,8 +104,7 @@
             <li class="conan-notes-item">
               <p class="conan-notes-symbol"><strong>鐵律一、它是「跨網頁」的陣列</strong></p>
               <div class="conan-notes-compare-wrap">
-                <table class="conan-notes-compare">
-                  <caption>一般變數 vs <code>$_SESSION</code> 對照</caption>
+                <table class="conan-notes-compare" aria-label="一般變數與 $_SESSION 對照">
                   <thead>
                     <tr>
                       <th scope="col">變數類型</th>
@@ -129,7 +121,7 @@
                       <td>無（該頁用完即丟）</td>
                     </tr>
                     <tr>
-                      <th scope="row"><code>$_SESSION</code> 陣列</th>
+                      <th scope="row">Session 陣列 <code>$_SESSION</code></th>
                       <td>資料鎖在伺服器後端；<strong>跨網頁</strong>仍保留</td>
                       <td>A 塞進去的格子，到 B、C 可<strong>一字不差</strong>讀出</td>
                       <td>瀏覽器未關閉 session（同一組連線身分）</td>

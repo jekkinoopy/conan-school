@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap"
     rel="stylesheet" />
   <style>
-    /* 06 專用：鐵律一 一般變數 vs $_SESSION 對照表 */
+    /* 06 專用：鐵律一 對照表（轉置：變數為列、比較項為欄） */
     .conan-notes-compare-wrap {
       margin-top: 0.85rem;
       overflow-x: auto;
@@ -26,7 +26,6 @@
       background: var(--conan-card-bg);
       border: 1px solid var(--conan-border);
       border-radius: 6px;
-      overflow: hidden;
     }
 
     .conan-notes-compare caption {
@@ -37,62 +36,34 @@
       color: var(--conan-navy);
     }
 
-    .conan-notes-compare thead th {
+    .conan-notes-compare th,
+    .conan-notes-compare td {
       padding: 0.65rem 0.75rem;
+      border: 1px solid var(--conan-border);
+      vertical-align: top;
+    }
+
+    .conan-notes-compare thead th {
       font-weight: 700;
       text-align: center;
       color: #fff;
       background: var(--conan-navy);
-      border: 1px solid color-mix(in srgb, var(--conan-navy) 85%, #000);
     }
 
     .conan-notes-compare thead th:first-child {
-      width: 5.5rem;
-      background: var(--conan-dark);
-    }
-
-    .conan-notes-compare thead th.conan-notes-compare-col--plain {
-      background: color-mix(in srgb, var(--conan-muted) 55%, var(--conan-navy));
-    }
-
-    .conan-notes-compare thead th.conan-notes-compare-col--session {
-      background: var(--conan-crimson);
-      border-color: color-mix(in srgb, var(--conan-crimson) 80%, #000);
+      width: 6.5rem;
+      text-align: left;
     }
 
     .conan-notes-compare tbody th {
-      padding: 0.6rem 0.7rem;
       font-weight: 600;
       text-align: left;
-      vertical-align: top;
       color: var(--conan-navy);
-      background: color-mix(in srgb, var(--conan-navy) 8%, var(--conan-card-bg));
-      border: 1px solid var(--conan-border);
-      white-space: nowrap;
+      background: var(--conan-bg);
     }
 
     .conan-notes-compare tbody td {
-      padding: 0.6rem 0.75rem;
-      vertical-align: top;
-      border: 1px solid var(--conan-border);
-    }
-
-    .conan-notes-compare tbody tr:nth-child(even) td {
-      background: color-mix(in srgb, var(--conan-bg) 45%, var(--conan-card-bg));
-    }
-
-    .conan-notes-compare tbody td.conan-notes-compare-cell--plain {
-      color: var(--conan-dark);
-    }
-
-    .conan-notes-compare tbody td.conan-notes-compare-cell--session {
-      background: color-mix(in srgb, var(--conan-crimson) 6%, var(--conan-card-bg));
-      border-left: 3px solid var(--conan-crimson);
-      font-weight: 500;
-    }
-
-    .conan-notes-compare tbody tr:nth-child(even) td.conan-notes-compare-cell--session {
-      background: color-mix(in srgb, var(--conan-crimson) 9%, var(--conan-card-bg));
+      background: var(--conan-card-bg);
     }
   </style>
 </head>
@@ -144,26 +115,24 @@
                   <caption>一般變數 vs <code>$_SESSION</code> 對照</caption>
                   <thead>
                     <tr>
-                      <th scope="col">比較項</th>
-                      <th scope="col" class="conan-notes-compare-col--plain">一般變數<br><code>$result</code></th>
-                      <th scope="col" class="conan-notes-compare-col--session"><code>$_SESSION</code> 陣列</th>
+                      <th scope="col">變數類型</th>
+                      <th scope="col">生命週期</th>
+                      <th scope="col">下一頁</th>
+                      <th scope="col">前提</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <th scope="row">生命週期</th>
-                      <td class="conan-notes-compare-cell--plain">網頁一執行完，變數在記憶體裡<strong>當場死掉</strong></td>
-                      <td class="conan-notes-compare-cell--session">資料鎖在伺服器後端；<strong>跨網頁</strong>仍保留</td>
+                      <th scope="row">一般變數 <code>$result</code></th>
+                      <td>網頁一執行完，變數在記憶體裡<strong>當場死掉</strong></td>
+                      <td>B、C 網頁<strong>完全讀不到</strong></td>
+                      <td>無（該頁用完即丟）</td>
                     </tr>
                     <tr>
-                      <th scope="row">下一頁</th>
-                      <td class="conan-notes-compare-cell--plain">B、C 網頁<strong>完全讀不到</strong></td>
-                      <td class="conan-notes-compare-cell--session">A 塞進去的格子，到 B、C 可<strong>一字不差</strong>讀出</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">前提</th>
-                      <td class="conan-notes-compare-cell--plain">無（該頁用完即丟）</td>
-                      <td class="conan-notes-compare-cell--session">瀏覽器未關閉 session（同一組連線身分）</td>
+                      <th scope="row"><code>$_SESSION</code> 陣列</th>
+                      <td>資料鎖在伺服器後端；<strong>跨網頁</strong>仍保留</td>
+                      <td>A 塞進去的格子，到 B、C 可<strong>一字不差</strong>讀出</td>
+                      <td>瀏覽器未關閉 session（同一組連線身分）</td>
                     </tr>
                   </tbody>
                 </table>

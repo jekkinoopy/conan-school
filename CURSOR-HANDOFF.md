@@ -26,7 +26,9 @@
 | 頁尾外部連結 | `conan-footer-nav` 僅春日部、努比實作專區（見 `includes/site-footer.html`） |
 | 頁尾聯絡 | 柯南世界觀虛構資訊（毛利偵探事務所等） |
 
-**新辦案筆記一則：**`notes/NN-….html` + 目錄 `<li>` + `CHAIN` 三處同步。
+**新辦案筆記一則：**`notes/NN-….html` + 目錄 `<ul class="conan-notes-index-grid">` 內 `<li>` + `CHAIN` 三處同步。
+
+**條目內對照表：**見 `repo-workflow.mdc`「對照表」— 無 caption、變數為列、左欄「中文 + code」、表內 code 字級 `1em`；版型 `notes/06-SESSION實體規格.html`。
 
 ## Git commit（助理回覆結尾）
 
@@ -41,6 +43,10 @@ php -S localhost:8080
 → <http://localhost:8080/index.html>
 
 ## 〈變更〉
+
+### 2026-05-25
+- `repo-workflow.mdc`「辦案筆記」：補**對照表**版型（欄列、列名順序、字級、配色、單頁樣式）；目錄條目 selector 改為實際的 `conan-notes-index-grid`。
+- `notes/06-SESSION實體規格.html`：鐵律一對照表定稿（上述規範實作）。
 
 ### 2026-05-24（晚）
 - `repo-workflow.mdc`「改動邊界」：補 2026-05-24 教訓——「怎麼做」只答文字、未點名不建檔；有改檔必附 commit；禁止連續道歉。

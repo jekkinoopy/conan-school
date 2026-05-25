@@ -57,7 +57,7 @@ alwaysApply: true
 | 必須同步 | 路徑 |
 |----------|------|
 | 筆記檔 | `notes/NN-標題.html` |
-| 目錄條目 | `notes/index.html` 的 `<ol class="conan-notes-index-list">` |
+| 目錄條目 | `notes/index.html` 的 `<ul class="conan-notes-index-grid">` |
 | 上下則 | `conan-notes-nav.js` 的 `CHAIN` |
 
 - **新增**一則：三處都加；內頁要有**頁首、頁尾**各一組 `.conan-notes-nav-root` + `data-note-id`（與 `CHAIN[].id` 一致）；勿再用單獨「辦案筆記目錄」返回連結。
@@ -69,6 +69,15 @@ alwaysApply: true
 - **一秒區分結論**等收尾：用 `conan-notes-item--legend`（標題 `conan-notes-symbol` + 內文 `<p>`），版型同條目卡，勿用舊式 `conan-notes-legend` 單段 `<p>` 混排標題與內文。正文勿加「下一步：請進入 xxx」。
 - `conan-notes-list` 已是 `<ol>` 自動編號（左側 1. 2. 3.）；條目標題**勿再寫** ①②③ 或 `1.` `2.`，避免重複編號。
 - **中文標點與間距**（新稿與修稿必自查，勿等使用者第三次提醒）：中文標點 `，。：；？！」」` **前不加空格**；列舉用 `、`。code 與中文之間可留**一個半形空格**。括號與 code **緊貼**：`exec()`、`$sql`、`（$）` 寫成標籤 <code>$</code> 或整段 <code>…</code>，**勿** `exec( ... )`、`( $ )`、標點貼著 code 造成視覺斷開。條目內 `範圍：`／`怎麼認：`／`職責：` 等段落之間靠 CSS 留白，勿擠成一整塊。
+- **對照表**（條目內兩者並列、如一般變數 vs `$_SESSION`；2026-05-25 教訓）：
+  - 語意已是對照時**不加** `<caption>`（條目標題／章節已說明即可）；無障礙用 `table` 的 `aria-label`。
+  - **欄列**：變數類型為**列**、比較項（生命週期、下一頁等）為**欄**，方便橫向比兩種變數。
+  - **左欄列名**：固定「**中文類型 + 半形空格 + `<code>` 變數名**」（例：一般變數 <code>$result</code>、Session 陣列 <code>$_SESSION</code>）；禁止 code 在前、中文在後混排。
+  - **大小寫**：同表內英文專有名詞一致（例：Session，勿 Session／session 混用）；PHP 函式名維持原寫法（如 <code>session_start()</code>）。
+  - **換行**：左欄列名 `white-space: nowrap`；內容欄可換行。
+  - **配色**：表頭單色（`--conan-navy`）、列名淺底即可；勿多色表頭、緋紅分欄邊線。
+  - **字級**：表基底與 `.conan-notes-item > p` 同色 **`0.9rem`**；`th`／`td` 用 `font-size: inherit`。表內 `<code>` **須覆寫**全站 `.conan-notes-item code` 的 `0.88em`，改 **`font-size: 1em`**（等寬字型可保留），避免變數名看起來比中文小一截。
+  - **樣式位置**：class 如 `.conan-notes-compare` 寫在**該筆記頁** `<style>`；預設不改 `Conan.css`。參考版型：`notes/06-SESSION實體規格.html`。
 - **鍵位指法**（僅**待鑑識**條目新寫或修）：只寫「手·指·上/下/左/右格數」、必要時「小指 Shift」；**勿**寫鍵帽字母、**勿**寫「同 01 …」等跨篇對照。已蓋「鑑識成功」者**勿改指法**，除非使用者當次點名。
 - **整篇複習完**：`notes/index.html` 該卡加 `conan-notes-index-card--ok`、右側藍章「鑑識成功」；該篇 HTML **移除** `conan-notes-disclaimer`。**進行中**用 `conan-notes-index-card--progress`、緋紅章「鑑識中」。目錄頁不放警語、CHAIN 同步等協作說明。
 

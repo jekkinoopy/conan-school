@@ -18,11 +18,13 @@
       overflow-x: auto;
     }
 
+    /* 與 .conan-notes-item > p 同為 0.9rem；表內 code 不再縮小（覆寫全站 .conan-notes-item code 的 0.88em） */
     .conan-notes-compare {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       line-height: 1.55;
+      font-family: inherit;
       background: var(--conan-card-bg);
       border: 1px solid var(--conan-border);
       border-radius: 6px;
@@ -33,6 +35,8 @@
       padding: 0.65rem 0.75rem;
       border: 1px solid var(--conan-border);
       vertical-align: top;
+      font-size: inherit;
+      line-height: inherit;
     }
 
     .conan-notes-compare thead th {
@@ -56,7 +60,19 @@
     }
 
     .conan-notes-compare tbody td {
+      font-weight: 400;
       background: var(--conan-card-bg);
+    }
+
+    .conan-notes-compare code {
+      font-size: 1em;
+      line-height: inherit;
+      font-family: ui-monospace, "Cascadia Code", "Consolas", monospace;
+      padding: 0.1em 0.3em;
+      border-radius: 3px;
+      background: #fff;
+      border: 1px solid var(--conan-border);
+      color: var(--conan-navy);
     }
   </style>
 </head>
@@ -124,7 +140,7 @@
                       <th scope="row">Session 陣列 <code>$_SESSION</code></th>
                       <td>資料鎖在伺服器後端；<strong>跨網頁</strong>仍保留</td>
                       <td>A 塞進去的格子，到 B、C 可<strong>一字不差</strong>讀出</td>
-                      <td>瀏覽器未關閉 session（同一組連線身分）</td>
+                      <td>瀏覽器未關閉 Session（同一組連線身分）</td>
                     </tr>
                   </tbody>
                 </table>

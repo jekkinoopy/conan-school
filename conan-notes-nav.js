@@ -7,6 +7,7 @@
     { id: "03-後端核心動作鑑識", href: "03-後端核心動作鑑識.html", title: "後端核心動作鑑識" },
     { id: "04-後台動態插頁與inc", href: "04-後台動態插頁與inc.html", title: "後台動態插頁與 ?inc 傳令" },
     { id: "05-WHERE帳密字串拆解", href: "05-WHERE帳密字串拆解.html", title: "WHERE 帳密字串：六零件鍵位拆解" },
+    { id: "06-SESSION實體規格", href: "06-SESSION實體規格.html", title: "$_SESSION 的實體規格" },
   ];
 
   var INDEX_HREF = "index.html";

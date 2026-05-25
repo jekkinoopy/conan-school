@@ -45,6 +45,8 @@
           <input type="password" id="password" name="password" placeholder="請輸入密碼" required autocomplete="current-password" />
         </div>
         <div class="conan-form-actions">
+                          <button type="submit" class="btn-submit">登入</button>
+                <button type="reset" class="btn-reset">重置</button>
         </div>
       </form>
       <p class="conan-form-foot">

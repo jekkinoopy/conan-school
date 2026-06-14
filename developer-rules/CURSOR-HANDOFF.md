@@ -4,15 +4,15 @@
 
 - 本 repo：<https://github.com/jekkinoopy/conan-school>
 - 母筆記站：[WebDev-Notes](https://github.com/jekkinoopy/WebDev-Notes) · [PHP 課程索引](https://jekkinoopy.github.io/WebDev-Notes/courses/01-database/php/index.html)
-- **完整協作規範**：`.cursor/rules/repo-workflow.mdc`（本檔不重複全文；更新規範時改寫該檔既有章節，勿堆疊重複段落）
+- **完整協作規範**：`developer-rules/repo-workflow.mdc`（本檔不重複全文；更新規範時改寫該檔既有章節，勿堆疊重複段落）
 
 ## 開工
 
 1. 看〈變更〉最新日期。
 2. 動**辦案筆記**前對版型：`notes/01-標點符號.html`、`Conan.css`（單頁覆寫樣式寫在該頁，預設不改全站 CSS）。**主選單**與站首一致（學員管理／辦案筆記／發音偵訊台／事件簿），見 `includes/site-nav.html` 註解。
 3. **只動使用者點名的檔**；PHP／DB **練習程式**須練完且當次明確要求才改；共通區塊用 class + `include`。
-4. 使用者說**還原／回到剛剛／上一個動作** → 見 `repo-workflow.mdc`「Git 還原」：**預設只退該檔上一個 commit**，勿一次 checkout 到很久以前的 SHA；還原後說明對應哪個 commit。
-5. 規則有變 → **改寫** `.cursor/rules/` 與本檔**對應段落**（勿在文末堆「補充」覆蓋前文）；〈變更〉**加一則摘要**（勿刪舊的、勿把整段規範複製進來）。
+4. 使用者說**還原／回到剛剛／上一個動作** → 見 `developer-rules/repo-workflow.mdc`「Git 還原」：**預設只退該檔上一個 commit**，勿一次 checkout 到很久以前的 SHA；還原後說明對應哪個 commit。
+5. 規則有變 → **改寫** `developer-rules/` 與本檔**對應段落**（勿在文末堆「補充」覆蓋前文）；〈變更〉**加一則摘要**（勿刪舊的、勿把整段規範複製進來）。
 
 ## 本專案路徑
 
@@ -32,7 +32,7 @@
 
 ## Git commit（助理回覆結尾）
 
-**有改檔 → 該則回覆結尾必附** `git add .` + `git commit -m "type: 重點"`（格式見 `.cursor/rules/git-commit.mdc`）；**漏附不行**。只給指令、**勿擅自執行** commit，除非使用者明確要求。
+**有改檔 → 該則回覆結尾必附** `git add .` + `git commit -m "type: 重點"`（格式見 `developer-rules/git-commit.mdc`）；**漏附不行**。只給指令、**勿擅自執行** commit，除非使用者明確要求。
 
 ## 本機預覽
 

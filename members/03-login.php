@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>會員登入｜米花町偵探學園</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="../Conan.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -27,32 +28,36 @@
     </div>
   </header>
 
-  <main class="conan-page-main">
-    <nav class="conan-back-links" aria-label="返回導覽">
-      <a class="conan-back-link" href="index.html"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> 學員管理專區</a>
-      <a class="conan-back-link" href="../index.html"><i class="fa-solid fa-house" aria-hidden="true"></i> 返回偵辦室</a>
-    </nav>
-    <article class="conan-form-card">
-      <p class="conan-form-label"><i class="fa-solid fa-user-check" aria-hidden="true"></i> 會員登入</p>
-      <p class="conan-form-sub">請出示帳號與密碼，接受偵辦室驗證。帳密不符者，恕不發放破案許可。</p>
-      <form action="04-api_login.php" method="post">
-        <div class="conan-form-field">
-          <label for="account"><i class="fa-solid fa-user" aria-hidden="true"></i> 帳號</label>
-          <input type="text" id="account" name="account" placeholder="請輸入帳號" required autocomplete="username" />
+  <main class="conan-page-main py-5">
+    <div class="container">
+      <nav class="conan-back-links mb-4" aria-label="返回導覽">
+        <a class="conan-back-link" href="index.html"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> 學員管理專區</a>
+        <a class="conan-back-link" href="../index.html"><i class="fa-solid fa-house" aria-hidden="true"></i> 返回偵辦室</a>
+      </nav>
+      <article class="conan-form-card card shadow-sm border-0 mx-auto" style="max-width: 480px;">
+        <div class="card-body p-4 p-md-5">
+          <p class="conan-form-label h4 mb-2"><i class="fa-solid fa-user-check" aria-hidden="true"></i> 會員登入</p>
+          <p class="conan-form-sub text-muted mb-4">請出示帳號與密碼，接受偵辦室驗證。帳密不符者，恕不發放破案許可。</p>
+          <form action="04-api_login.php" method="post">
+            <div class="conan-form-field mb-3">
+              <label class="form-label" for="account"><i class="fa-solid fa-user" aria-hidden="true"></i> 帳號</label>
+              <input class="form-control" type="text" id="account" name="account" placeholder="請輸入帳號" required autocomplete="username" />
+            </div>
+            <div class="conan-form-field mb-4">
+              <label class="form-label" for="password"><i class="fa-solid fa-lock" aria-hidden="true"></i> 密碼</label>
+              <input class="form-control" type="password" id="password" name="password" placeholder="請輸入密碼" required autocomplete="current-password" />
+            </div>
+            <div class="conan-form-actions d-grid gap-2 d-md-flex">
+              <button type="submit" class="btn btn-primary">登入</button>
+              <button type="reset" class="btn btn-outline-secondary">重置</button>
+            </div>
+          </form>
+          <p class="conan-form-foot mt-4">
+            尚未登記嫌疑犯名冊？<a href="01-register.html">前往註冊</a>
+          </p>
         </div>
-        <div class="conan-form-field">
-          <label for="password"><i class="fa-solid fa-lock" aria-hidden="true"></i> 密碼</label>
-          <input type="password" id="password" name="password" placeholder="請輸入密碼" required autocomplete="current-password" />
-        </div>
-        <div class="conan-form-actions">
-                          <button type="submit" class="btn-submit">登入</button>
-                <button type="reset" class="btn-reset">重置</button>
-        </div>
-      </form>
-      <p class="conan-form-foot">
-        尚未登記嫌疑犯名冊？<a href="01-register.html">前往註冊</a>
-      </p>
-    </article>
+      </article>
+    </div>
   </main>
 
   <footer id="contact" class="conan-site-footer">

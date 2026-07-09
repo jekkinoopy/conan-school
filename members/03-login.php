@@ -30,11 +30,11 @@
 
   <main class="conan-page-main py-5">
     <div class="container">
-      <nav class="conan-back-links mb-4" aria-label="返回導覽">
+      <nav class="conan-back-links mb-4 d-flex justify-content-between align-items-center" aria-label="返回導覽">
         <a class="conan-back-link" href="index.html"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> 學員管理專區</a>
         <a class="conan-back-link" href="../index.html"><i class="fa-solid fa-house" aria-hidden="true"></i> 返回偵辦室</a>
       </nav>
-      <article class="conan-form-card card shadow-sm border-0 mx-auto" style="max-width: 480px;">
+      <article class="conan-form-card card shadow-sm mx-auto" style="max-width: 480px; border: none;">
         <div class="card-body p-4 p-md-5">
           <p class="conan-form-label h4 mb-2"><i class="fa-solid fa-user-check" aria-hidden="true"></i> 會員登入</p>
           <p class="conan-form-sub text-muted mb-4">請出示帳號與密碼，接受偵辦室驗證。帳密不符者，恕不發放破案許可。</p>
